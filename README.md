@@ -1,7 +1,7 @@
 # `chrnio`'s Dotfiles
 
 ```console
-charan@arch:~$ fetch
+chrn@archbox:~$ fetch
 
 os        arch linux
 wm        hyprland
