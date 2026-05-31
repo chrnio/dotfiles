@@ -1,0 +1,283 @@
+/* ==========================================================================
+   MONOCHROME.CSS
+   Minimal grayscale theme for Obsidian
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Palette
+   -------------------------------------------------------------------------- */
+
+.theme-dark {
+  --background-primary: #111111;
+  --background-primary-alt: #161616;
+
+  --background-secondary: #181818;
+  --background-secondary-alt: #1d1d1d;
+
+  --background-modifier-border: #2a2a2a;
+  --background-modifier-hover: #202020;
+  --background-modifier-active-hover: #252525;
+
+  --text-normal: #e5e5e5;
+  --text-muted: #a0a0a0;
+  --text-faint: #6f6f6f;
+
+  --text-accent: #e5e5e5;
+  --text-accent-hover: #ffffff;
+
+  --interactive-normal: #1c1c1c;
+  --interactive-hover: #252525;
+
+  --interactive-accent: #666666;
+  --interactive-accent-hover: #808080;
+
+  --link-color: #d8d8d8;
+  --link-color-hover: #ffffff;
+
+  --tag-color: #d8d8d8;
+  --tag-background: #202020;
+
+  --blockquote-border-color: #444444;
+  --hr-color: #2a2a2a;
+
+  --code-normal: #dddddd;
+  --code-background: #181818;
+
+  --titlebar-background: #111111;
+  --titlebar-background-focused: #111111;
+
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: #333333;
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+   -------------------------------------------------------------------------- */
+
+body {
+  --font-text-size: 16px;
+  --font-ui-small: 13px;
+  --font-ui-medium: 14px;
+  --font-ui-large: 15px;
+}
+
+.markdown-rendered,
+.markdown-source-view {
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------------------------------
+   Headings
+   -------------------------------------------------------------------------- */
+
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6,
+.cm-header {
+  color: var(--text-normal);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   Links
+   -------------------------------------------------------------------------- */
+
+a,
+.cm-link {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+a:hover,
+.cm-link:hover {
+  color: var(--link-color-hover);
+}
+
+/* --------------------------------------------------------------------------
+   Tags
+   -------------------------------------------------------------------------- */
+
+.tag,
+.cm-hashtag {
+  background: var(--tag-background);
+  color: var(--tag-color);
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Code
+   -------------------------------------------------------------------------- */
+
+code {
+  background: var(--code-background);
+  border-radius: 0;
+}
+
+.markdown-rendered pre {
+  background: var(--code-background);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Tables
+   -------------------------------------------------------------------------- */
+
+.markdown-rendered table {
+  border-collapse: collapse;
+}
+
+.markdown-rendered th,
+.markdown-rendered td {
+  border: 1px solid var(--background-modifier-border);
+}
+
+.markdown-rendered th {
+  background: var(--background-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Blockquotes
+   -------------------------------------------------------------------------- */
+
+.markdown-rendered blockquote {
+  border-left: 2px solid var(--blockquote-border-color);
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Callouts
+   -------------------------------------------------------------------------- */
+
+.callout {
+  --callout-color: 229, 229, 229;
+
+  background: #181818;
+
+  border: none;
+  border-left: 3px solid #ffffff;
+
+  border-radius: 0;
+
+  padding: 0.75rem 1rem;
+  margin: 1.5rem 0;
+}
+
+.callout-title {
+  color: #ffffff;
+  font-weight: 600;
+
+  margin-bottom: 0.5rem;
+}
+
+.callout-icon svg {
+  color: #a0a0a0;
+}
+
+/* --------------------------------------------------------------------------
+   Checkboxes
+   -------------------------------------------------------------------------- */
+
+input[type="checkbox"] {
+  border-radius: 0;
+}
+
+.checkbox-container {
+  background-color: #303030 !important;
+}
+
+.checkbox-container.is-enabled {
+  background-color: #666666 !important;
+}
+
+.checkbox-container:after {
+  background-color: #e5e5e5 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Search Highlights
+   -------------------------------------------------------------------------- */
+
+.markdown-rendered mark,
+.search-result-file-matched-text {
+  background: #3a3a3a;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Workspace
+   -------------------------------------------------------------------------- */
+
+.workspace-tab-header.is-active {
+  box-shadow: inset 0 -1px 0 #ffffff;
+}
+
+.nav-file-title:hover,
+.nav-folder-title:hover {
+  background: var(--background-modifier-hover);
+}
+
+.workspace-leaf-resize-handle {
+  background: var(--background-modifier-border);
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+
+button {
+  border-radius: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Scrollbars
+   -------------------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+/* --------------------------------------------------------------------------
+   Selection
+   -------------------------------------------------------------------------- */
+
+::selection {
+  background: #3a3a3a;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Graph View
+   -------------------------------------------------------------------------- */
+
+.graph-view.color-fill {
+  color: #808080;
+}
+
+.graph-view.color-line {
+  color: #444444;
+}
+
+.graph-view.color-text {
+  color: #e5e5e5;
+}
+
+/* --------------------------------------------------------------------------
+   Properties
+   -------------------------------------------------------------------------- */
+
+.metadata-container {
+  border-top: 1px solid var(--background-modifier-border);
+}

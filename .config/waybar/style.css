@@ -1,0 +1,134 @@
+/* Global */
+* {
+  color: #e5e5e5;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: "JetBrainsMono NF Medium";
+  font-size: 14px;
+}
+
+/* Bar container */
+window#waybar {
+  background: rgba(17, 17, 17, 0.92);
+}
+
+.modules-left { margin-left: 8px; }
+.modules-right { margin-right: 8px; }
+
+/* Workspaces */
+#workspaces button {
+  all: unset;
+  padding: 0 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
+  opacity: 0.35;
+  color: #a9b1d6; /* unchanged */
+}
+
+#workspaces button.active {
+  opacity: 1;
+  color: #e5e5e5;
+}
+
+#workspaces button:hover {
+  opacity: 0.7;
+  color: #ffffff;
+}
+
+/* Core modules */
+#cpu,
+#battery,
+#pulseaudio,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+  color: #c0c0c0;
+}
+
+/* Battery */
+#battery.charging,
+#battery.warning:not(.charging),
+#battery.critical:not(.charging) {
+  color: #e5e5e5;
+}
+
+/* Pulseaudio */
+#pulseaudio.muted {
+  color: #666666;
+}
+
+/* Tray & system icons */
+#tray { margin-right: 16px; }
+
+#bluetooth {
+  margin-right: 17px;
+  color: #c0c0c0;
+}
+
+#bluetooth.disabled {
+  color: #666666;
+}
+
+#network {
+  margin-right: 13px;
+  color: #c0c0c0;
+}
+
+#network.disconnected {
+  color: #666666;
+}
+
+#custom-expand-icon {
+  margin-right: 18px;
+  color: #666666;
+}
+
+/* Clock */
+#clock {
+  margin-left: 8.75px;
+  color: #e5e5e5;
+}
+
+/* Tooltip */
+tooltip {
+  background: #111111;
+  border: 1px solid #2a2a2a;
+  color: #e5e5e5;
+  padding: 2px;
+}
+
+/* Update module */
+#custom-update {
+  font-size: 10px;
+  color: #c0c0c0;
+}
+
+/* Hidden class */
+.hidden { opacity: 0; }
+
+/* Screen recording indicator */
+#custom-screenrecording-indicator {
+  min-width: 12px;
+  margin-left: 5px;
+  font-size: 10px;
+  padding-bottom: 1px;
+  color: #666666;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #e5e5e5;
+}
+
+/* Voxtype */
+#custom-voxtype {
+  min-width: 12px;
+  margin: 0 0 0 7.5px;
+  color: #c0c0c0;
+}
+
+#custom-voxtype.recording {
+  color: #e5e5e5;
+}
