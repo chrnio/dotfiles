@@ -1,0 +1,47 @@
+[buildPlans.Chasevka]
+family = "Chasevka"
+spacing = "quasi-proportional"
+serifs = "sans"
+noCvSs = true
+exportGlyphNames = false
+
+  [buildPlans.Chasevka.variants]
+  inherits = "ss07"
+
+    [buildPlans.Chasevka.variants.design]
+    paren = "flat-arc"
+    brace = "curly-flat-boundary"
+    lig-ltgteq = "slanted"
+    lig-single-arrow-bar = "with-notch"
+
+[buildPlans.Chasevka.weights.Regular]
+shape = 400
+menu = 400
+css = 400
+
+[buildPlans.Chasevka.weights.Bold]
+shape = 700
+menu = 700
+css = 700
+
+[buildPlans.Chasevka.widths.Condensed]
+shape = 500
+menu = 3
+css = "condensed"
+
+[buildPlans.Chasevka.widths.Normal]
+shape = 600
+menu = 5
+css = "normal"
+
+[buildPlans.Chasevka.slopes.Upright]
+angle = 0
+shape = "upright"
+menu = "upright"
+css = "normal"
+
+[buildPlans.Chasevka.slopes.Italic]
+angle = 9.4
+shape = "italic"
+menu = "italic"
+css = "italic"
