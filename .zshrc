@@ -51,11 +51,6 @@ function _zinit_snip_if() {
 }
 
 
-# COMPLETION STYLING — Catppuccin Mocha
-#   base    #1e1e2e   surface0 #313244   surface2 #585b70
-#   text    #cdd6f4   subtext0 #a6adc8
-#   mauve   #cba6f7   red      #f38ba8   rosewater #f5e0dc
-#   lavender #b4befe  green    #a6e3a1   yellow   #f9e2af
 
 zstyle ':completion:*' menu no                 # hand off to fzf-tab
 zstyle ':completion:*' matcher-list \
@@ -69,15 +64,21 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/compcache"
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=34=0'
 zstyle ':completion:*:*:*:*:processes'   command "ps -u $USER -o pid,user,comm -w"
 
-# fzf-tab global fzf flags — Catppuccin Mocha
+# Completion menu
+
 zstyle ':fzf-tab:*' fzf-flags \
-    '--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8' \
-    '--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc' \
-    '--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8' \
-    '--layout=reverse' '--border=rounded' '--prompt=  ' '--pointer=>' '--marker=*' \
+    '--color=bg:#111111,bg+:#1a1a1a' \
+    '--color=fg:#e5e5e5,fg+:#ffffff' \
+    '--color=hl:#ffffff,hl+:#ffffff' \
+    '--color=border:#ffffff,gutter:#111111' \
+    '--color=spinner:#e5e5e5,info:#888888,header:#888888' \
+    '--color=prompt:#e5e5e5,pointer:#ffffff,marker:#ffffff' \
+    '--layout=reverse' \
+    '--border=rounded' \
+    '--prompt=  ' \
+    '--pointer=>' \
+    '--marker=*' \
     '--min-height=8'
-zstyle ':fzf-tab:*' switch-group ',' '.'       # , / . to switch groups
-zstyle ':fzf-tab:*' fzf-min-height 8
 
 # previews per context
 zstyle ':fzf-tab:complete:*' fzf-preview \
@@ -180,7 +181,6 @@ bindkey '^[[3;5~' kill-word                       # Ctrl-Delete
 bindkey '^ '      autosuggest-accept              # Ctrl-Space: accept suggestion
 bindkey '^[^M'    autosuggest-execute             # Alt-Enter: accept + run
 
-
 # -----------------------------------------------------------------------------
 # FZF
 # -----------------------------------------------------------------------------
@@ -198,9 +198,20 @@ export FZF_DEFAULT_OPTS="
   --prompt='  '
   --pointer='>'
   --marker='*'
-  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8
-  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
-  --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
+  --color=bg:#111111
+  --color=bg+:#1a1a1a
+  --color=fg:#e5e5e5
+  --color=fg+:#ffffff
+  --color=hl:#ffffff
+  --color=hl+:#ffffff
+  --color=border:#ffffff
+  --color=gutter:#111111
+  --color=spinner:#e5e5e5
+  --color=info:#888888
+  --color=header:#888888
+  --color=prompt:#e5e5e5
+  --color=pointer:#ffffff
+  --color=marker:#ffffff
   --bind='ctrl-/:toggle-preview'
   --bind='ctrl-u:preview-page-up'
   --bind='ctrl-d:preview-page-down'
@@ -217,12 +228,11 @@ export FZF_ALT_C_OPTS="
 "
 
 export FZF_CTRL_R_OPTS="
-  --preview='echo {}' --preview-window='down:3:hidden:wrap'
+  --preview='echo {}'
+  --preview-window='down:3:hidden:wrap'
   --bind='ctrl-/:toggle-preview'
   --header='Ctrl-Y to copy  |  Ctrl-/ to preview'
-  --color=header:italic
 "
-
 
 # -----------------------------------------------------------------------------
 # ZOXIDE
