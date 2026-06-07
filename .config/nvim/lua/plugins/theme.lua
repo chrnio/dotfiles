@@ -1,76 +1,125 @@
 return {
-  -- TokyoNight
   {
-    "folke/tokyonight.nvim",
+    "scottmckendry/cyberdream.nvim",
     lazy = false,
     priority = 1000,
-    opts = {
-      style = "night",
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-        functions = { italic = false },
-        variables = { italic = false },
-        identifiers = { italic = false },
-      },
-    },
-  },
 
-  -- Catppuccin
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    opts = {
-      flavour = "mocha",
-      no_italic = true,
-    },
-  },
-
-  -- Gruvbox Material
-  {
-    "sainnhe/gruvbox-material",
     config = function()
-      vim.o.background = "dark"
-      vim.g.gruvbox_material_background = "hard"
-      vim.g.gruvbox_material_enable_italic = 0
-      vim.g.gruvbox_material_disable_italic_comment = 1
-    end,
-  },
+      require("cyberdream").setup({
+        transparent = true,
+        italic_comments = false,
+        hide_fillchars = false,
+        borderless_telescope = true,
 
-  -- Koda
-  {
-    "oskarnurm/koda.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        pattern = "*",
-        callback = function()
-          local transparent_groups = {
-            "Normal",
-            "NormalNC",
-            "NormalFloat",
-            "FloatBorder",
-            "SignColumn",
-            "EndOfBuffer",
-            "StatusLine",
-            "StatusLineNC",
-            "FoldColumn",
+        terminal_colors = true,
+
+        overrides = function(colors)
+          return {
+            Normal = { bg = "NONE" },
+            NormalNC = { bg = "NONE" },
+            NormalFloat = { bg = "NONE" },
+            FloatBorder = { bg = "NONE" },
+
+            SignColumn = { bg = "NONE" },
+            FoldColumn = { bg = "NONE" },
+            EndOfBuffer = { bg = "NONE" },
+
+            LineNr = {
+              bg = "NONE",
+              fg = colors.grey,
+            },
+
+            CursorLineNr = {
+              bg = "NONE",
+              fg = colors.magenta,
+            },
+
+            CursorLine = {
+              bg = colors.bgHighlight,
+            },
+
+            StatusLine = { bg = "NONE" },
+            StatusLineNC = { bg = "NONE" },
+
+            TabLine = { bg = "NONE" },
+            TabLineFill = { bg = "NONE" },
+
+            TabLineSel = {
+              bg = "NONE",
+              fg = colors.blue,
+            },
+
+            WinSeparator = {
+              bg = "NONE",
+              fg = colors.grey,
+            },
+
+            Pmenu = {
+              bg = colors.bgAlt,
+              fg = colors.fg,
+            },
+
+            PmenuSel = {
+              bg = colors.bgHighlight,
+              fg = colors.fg,
+              bold = true,
+            },
+
+            PmenuSbar = {
+              bg = colors.bgAlt,
+            },
+
+            PmenuThumb = {
+              bg = colors.grey,
+            },
+
+            TelescopeNormal = { bg = "NONE" },
+            TelescopeBorder = {
+              bg = "NONE",
+              fg = colors.grey,
+            },
+
+            TelescopePromptNormal = { bg = "NONE" },
+
+            TelescopePromptBorder = {
+              bg = "NONE",
+              fg = colors.blue,
+            },
+
+            TelescopeResultsNormal = { bg = "NONE" },
+            TelescopePreviewNormal = { bg = "NONE" },
+
+            DiagnosticVirtualTextError = {
+              bg = "NONE",
+              fg = colors.red,
+            },
+
+            DiagnosticVirtualTextWarn = {
+              bg = "NONE",
+              fg = colors.yellow,
+            },
+
+            DiagnosticVirtualTextInfo = {
+              bg = "NONE",
+              fg = colors.cyan,
+            },
+
+            DiagnosticVirtualTextHint = {
+              bg = "NONE",
+              fg = colors.green,
+            },
           }
-
-          for _, group in ipairs(transparent_groups) do
-            vim.api.nvim_set_hl(0, group, { bg = "NONE" })
-          end
         end,
       })
+
+      vim.cmd.colorscheme("cyberdream")
     end,
   },
 
-  -- Default colorscheme
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "koda-dark",
+      colorscheme = "cyberdream",
     },
   },
 }
