@@ -64,15 +64,14 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/compcache"
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=34=0'
 zstyle ':completion:*:*:*:*:processes'   command "ps -u $USER -o pid,user,comm -w"
 
-# Completion menu
-
+# FZF-TAB (Cyberdream)
 zstyle ':fzf-tab:*' fzf-flags \
-    '--color=bg:#111111,bg+:#1a1a1a' \
-    '--color=fg:#e5e5e5,fg+:#ffffff' \
-    '--color=hl:#ffffff,hl+:#ffffff' \
-    '--color=border:#ffffff,gutter:#111111' \
-    '--color=spinner:#e5e5e5,info:#888888,header:#888888' \
-    '--color=prompt:#e5e5e5,pointer:#ffffff,marker:#ffffff' \
+    '--color=bg:#16181a,bg+:#3c4048' \
+    '--color=fg:#ffffff,fg+:#ffffff' \
+    '--color=hl:#5ea1ff,hl+:#5ef1ff' \
+    '--color=border:#3c4048,gutter:#16181a' \
+    '--color=spinner:#bd5eff,info:#a0a8cd,header:#a0a8cd' \
+    '--color=prompt:#ffbd5e,pointer:#bd5eff,marker:#5eff6c' \
     '--layout=reverse' \
     '--border=rounded' \
     '--prompt=  ' \
@@ -144,8 +143,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-export GOPATH="$HOME/go"
-export GOBIN="$HOME/go/bin"
+export GOPATH="$HOME/.go"
+export GOBIN="$HOME/.go/bin"
+export GOMODCACHE="$HOME/.cache/go/mod"
 export CARGO_HOME="$HOME/.cargo"
 export RUSTUP_HOME="$HOME/.rustup"
 export PNPM_HOME="$HOME/.local/share/pnpm"
@@ -198,20 +198,27 @@ export FZF_DEFAULT_OPTS="
   --prompt='  '
   --pointer='>'
   --marker='*'
-  --color=bg:#111111
-  --color=bg+:#1a1a1a
-  --color=fg:#e5e5e5
+
+  --color=bg:#16181a
+  --color=bg+:#3c4048
+
+  --color=fg:#ffffff
   --color=fg+:#ffffff
-  --color=hl:#ffffff
-  --color=hl+:#ffffff
-  --color=border:#ffffff
-  --color=gutter:#111111
-  --color=spinner:#e5e5e5
-  --color=info:#888888
-  --color=header:#888888
-  --color=prompt:#e5e5e5
-  --color=pointer:#ffffff
-  --color=marker:#ffffff
+
+  --color=hl:#5ea1ff
+  --color=hl+:#5ef1ff
+
+  --color=border:#3c4048
+  --color=gutter:#16181a
+
+  --color=spinner:#bd5eff
+  --color=info:#a0a8cd
+  --color=header:#a0a8cd
+
+  --color=prompt:#ffbd5e
+  --color=pointer:#bd5eff
+  --color=marker:#5eff6c
+
   --bind='ctrl-/:toggle-preview'
   --bind='ctrl-u:preview-page-up'
   --bind='ctrl-d:preview-page-down'
