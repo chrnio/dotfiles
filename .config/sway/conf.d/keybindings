@@ -1,0 +1,98 @@
+set $mod Mod4
+
+set $terminal    alacritty
+set $menu        fuzzel
+set $browser     firefox
+set $altBrowser  brave
+set $fileManager dolphin
+
+# core
+bindsym $mod+Return       exec $terminal
+bindsym $mod+Shift+q      kill
+bindsym $mod+Shift+m      exec ~/.config/sway/scripts/logout-menu.sh
+
+# apps
+bindsym $mod+space        exec $menu
+bindsym $mod+b            exec $browser
+bindsym $mod+Shift+b      exec $altBrowser
+bindsym $mod+Shift+f      exec $fileManager
+bindsym $mod+z            exec zed
+bindsym $mod+r            exec flatpak run com.github.johnfactotum.Foliate
+bindsym $mod+t            exec gnome-text-editor
+bindsym $mod+Shift+o      exec obsidian
+bindsym $mod+Shift+w      exec brave --app=https://web.whatsapp.com
+bindsym $mod+slash        exec bitwarden-desktop
+
+# window management
+bindsym $mod+f            fullscreen toggle
+bindsym $mod+v            floating toggle
+bindsym $mod+e            split toggle
+bindsym $mod+w            exec pkill -SIGUSR1 waybar
+bindsym $mod+Shift+Delete  exec swaylock
+
+# focus (hjkl)
+bindsym $mod+h            focus left
+bindsym $mod+j            focus down
+bindsym $mod+k            focus up
+bindsym $mod+l            focus right
+
+# move window (hjkl)
+bindsym $mod+Shift+h      move left
+bindsym $mod+Shift+k      move up
+bindsym $mod+Shift+j      move down
+bindsym $mod+Shift+l      move right
+
+# workspaces
+bindsym $mod+1  workspace number 1
+bindsym $mod+2  workspace number 2
+bindsym $mod+3  workspace number 3
+bindsym $mod+4  workspace number 4
+bindsym $mod+5  workspace number 5
+bindsym $mod+6  workspace number 6
+bindsym $mod+7  workspace number 7
+bindsym $mod+8  workspace number 8
+bindsym $mod+9  workspace number 9
+bindsym $mod+0  workspace number 10
+
+bindsym $mod+Shift+1  move container to workspace number 1
+bindsym $mod+Shift+2  move container to workspace number 2
+bindsym $mod+Shift+3  move container to workspace number 3
+bindsym $mod+Shift+4  move container to workspace number 4
+bindsym $mod+Shift+5  move container to workspace number 5
+bindsym $mod+Shift+6  move container to workspace number 6
+bindsym $mod+Shift+7  move container to workspace number 7
+bindsym $mod+Shift+8  move container to workspace number 8
+bindsym $mod+Shift+9  move container to workspace number 9
+bindsym $mod+Shift+0  move container to workspace number 10
+
+# scratchpad
+bindsym $mod+s            scratchpad show
+bindsym $mod+Shift+s      move scratchpad
+
+# scroll through workspaces with mouse wheel on titlebar/border
+bindsym --whole-window $mod+button4  workspace prev
+bindsym --whole-window $mod+button5  workspace next
+
+# mouse move/resize with mod held
+floating_modifier $mod normal
+
+# screenshots: Print=region->swappy, Shift+Print=full->swappy, Mod+Shift+c=region->clipboard
+bindsym Print             exec ~/.config/sway/scripts/screenshot.sh region
+bindsym Shift+Print       exec ~/.config/sway/scripts/screenshot.sh fullscreen
+bindsym $mod+Shift+c      exec ~/.config/sway/scripts/screenshot.sh copy
+
+# volume
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioMute        exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioMicMute     exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+# brightness
+bindsym --locked XF86MonBrightnessUp   exec brightnessctl -e4 -n2 set 5%+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl -e4 -n2 set 5%-
+
+# media
+bindsym --locked XF86AudioNext  exec playerctl next
+bindsym --locked XF86AudioPrev  exec playerctl previous
+bindsym --locked XF86AudioPlay  exec playerctl play-pause
+bindsym --locked XF86AudioPause exec playerctl play-pause
