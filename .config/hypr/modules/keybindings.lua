@@ -4,9 +4,9 @@
 local mod = "SUPER"
 
 local terminal = "kitty"
-local fileManager = "nautilus"
+local fileManager = "pcmanfm"
 local menu = "fuzzel"
-local browser = "zen-browser"
+local browser = "firefox"
 local altBrowser = "brave"
 
 -- Terminal
