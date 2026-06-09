@@ -1,12 +1,22 @@
 {
+  // Reload CSS on file change without restarting waybar.
   "reload_style_on_change": true,
+
+  // Render the bar on the compositor's top layer so it sits above all windows.
   "layer": "top",
   "position": "top",
+
+  // Zero inter-module spacing; spacing is handled entirely in CSS.
   "spacing": 0,
+
   "height": 26,
 
-  "modules-left": ["hyprland/workspaces"],
+  // niri/workspaces replaces hyprland/workspaces.
+  // The module is provided by waybar's built-in niri support (waybar >= 0.10).
+  "modules-left": ["niri/workspaces"],
+
   "modules-center": ["clock", "custom/update"],
+
   "modules-right": [
     "tray",
     "bluetooth",
@@ -16,30 +26,54 @@
     "battery"
   ],
 
-  "hyprland/workspaces": {
+  // ---------------------------------------------------------------------------
+  // WORKSPACES
+  // niri/workspaces mirrors the hyprland/workspaces config.
+  // `on-click activate` focuses the clicked workspace.
+  // ---------------------------------------------------------------------------
+  "niri/workspaces": {
     "on-click": "activate",
-    "format": "{name}"
+    // Show the workspace index (niri uses dynamic workspaces; indices are 1-based)
+    "format": "{index}"
   },
 
+  // ---------------------------------------------------------------------------
+  // CUSTOM: SYSTEM UPDATE COUNT
+  // Polls `checkupdates` every 6 hours (21600s).
+  // Clicking opens a kitty terminal running pacman upgrade.
+  // ---------------------------------------------------------------------------
   "custom/update": {
-    "format": "",
+    "format": "",
     "exec": "checkupdates | wc -l",
     "interval": 21600,
     "tooltip-format": "{} updates available",
     "on-click": "kitty -e sudo pacman -Syu"
   },
 
+  // ---------------------------------------------------------------------------
+  // CPU
+  // Icon-only display; clicking opens btop in kitty.
+  // ---------------------------------------------------------------------------
   "cpu": {
     "interval": 5,
     "format": "󰍛",
     "on-click": "kitty -e btop"
   },
 
+  // ---------------------------------------------------------------------------
+  // CLOCK
+  // Matches the original: short weekday + day-of-month + 24h time.
+  // ---------------------------------------------------------------------------
   "clock": {
     "format": "{:%a %d %H:%M}",
     "tooltip": false
   },
 
+  // ---------------------------------------------------------------------------
+  // NETWORK
+  // Wi-Fi signal strength icons; ethernet and disconnected fallbacks.
+  // Clicking opens nmtui in kitty.
+  // ---------------------------------------------------------------------------
   "network": {
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format": "{icon}",
@@ -49,8 +83,13 @@
     "on-click": "kitty -e nmtui"
   },
 
+  // ---------------------------------------------------------------------------
+  // BLUETOOTH
+  // Four states: on (idle), off, connected, no controller present.
+  // Clicking opens bluetui in kitty.
+  // ---------------------------------------------------------------------------
   "bluetooth": {
-    "format": "",
+    "format": "",
     "format-off": "󰂲",
     "format-disabled": "󰂲",
     "format-connected": "󰂱",
@@ -59,18 +98,26 @@
     "on-click": "kitty -e bluetui"
   },
 
+  // ---------------------------------------------------------------------------
+  // PULSEAUDIO / PIPEWIRE
+  // Icon-only volume display; right-click toggles mute.
+  // ---------------------------------------------------------------------------
   "pulseaudio": {
     "format": "{icon}",
     "tooltip-format": "Volume {volume}%",
     "scroll-step": 5,
-    "format-muted": "",
+    "format-muted": "",
     "format-icons": {
-      "headphone": "",
-      "default": ["", "", ""]
+      "headphone": "",
+      "default": ["", "", ""]
     },
     "on-click-right": "pamixer -t"
   },
 
+  // ---------------------------------------------------------------------------
+  // BATTERY
+  // Percentage + icon; warning at 20%, critical at 10%.
+  // ---------------------------------------------------------------------------
   "battery": {
     "format": "{capacity}% {icon}",
     "format-icons": {
@@ -83,6 +130,10 @@
     }
   },
 
+  // ---------------------------------------------------------------------------
+  // SYSTEM TRAY
+  // 12px icons with 17px gap between entries.
+  // ---------------------------------------------------------------------------
   "tray": {
     "icon-size": 12,
     "spacing": 17

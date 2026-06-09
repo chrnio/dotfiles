@@ -1,134 +1,197 @@
-/* Global */
+/*
+ * Waybar stylesheet — niri port
+ * Theme: Cyberdream
+ *
+ * Cyberdream palette reference (from kitty theme):
+ *   background  : #000000  (pure black, overrides #16181a for the bar)
+ *   foreground  : #ffffff
+ *   color0      : #16181a  (darkest bg, used for inactive elements)
+ *   color1/9    : #ff6e5e  (red)
+ *   color2/10   : #5eff6c  (green)
+ *   color3/11   : #f1ff5e  (yellow)
+ *   color4/12   : #5ea1ff  (blue)
+ *   color5/13   : #bd5eff  (magenta)
+ *   color6/14   : #5ef1ff  (cyan)
+ *   color7/15   : #ffffff  (white)
+ *   color8      : #3c4048  (bright black / selection bg)
+ *
+ * Layout intent:
+ *   - Bar background is pure #000000
+ *   - Text is off-white (#e5e5e5) for comfortable reading against black
+ *   - Active / focused elements use full cyberdream white (#ffffff)
+ *   - Muted / inactive elements use color0 (#16181a) or dim gray (#666666)
+ *   - No rounded corners, no gradients — matches Hyprland rounding=0 aesthetic
+ */
+
+/* ---------------------------------------------------------------------------
+   RESET
+   Strip all default GTK widget chrome from every waybar element.
+   `min-height: 0` prevents GTK's minimum size constraints from inflating rows.
+--------------------------------------------------------------------------- */
 * {
-  color: #e5e5e5;
-  border: none;
+  border:        none;
   border-radius: 0;
-  min-height: 0;
-  font-family: "JetBrainsMono NF Medium";
-  font-size: 14px;
+  min-height:    0;
+  font-family:   "JetBrainsMono NF Medium";
+  font-size:     14px;
+  color:         #e5e5e5;
 }
 
-/* Bar container */
+/* ---------------------------------------------------------------------------
+   BAR CONTAINER
+   Pure black background; no transparency. Waybar renders on the "top" layer
+   so it sits above all windows regardless.
+--------------------------------------------------------------------------- */
 window#waybar {
-  background: rgba(17, 17, 17, 0.92);
+  background: #000000;
 }
 
-.modules-left { margin-left: 8px; }
+/* ---------------------------------------------------------------------------
+   MODULE GROUP MARGINS
+   8px breathing room at the left/right edges so icons don't touch the screen
+   border.
+--------------------------------------------------------------------------- */
+.modules-left  { margin-left:  8px; }
 .modules-right { margin-right: 8px; }
 
-/* Workspaces */
+/* ---------------------------------------------------------------------------
+   WORKSPACES
+   niri/workspaces emits one button per workspace.
+
+   - Inactive workspaces: low opacity, cyberdream blue tint
+   - Active workspace: full opacity, full white — matches Hyprland
+     active_border = rgba(ffffffff)
+   - Hover: mid-opacity so the interaction is legible
+--------------------------------------------------------------------------- */
 #workspaces button {
-  all: unset;
-  padding: 0 6px;
-  margin: 0 1.5px;
+  /* Wipe GTK button defaults before applying our own layout */
+  all:       unset;
+  padding:   0 6px;
+  margin:    0 1.5px;
   min-width: 9px;
-  opacity: 0.35;
-  color: #a9b1d6; /* unchanged */
+  opacity:   0.35;
+  /* Cyberdream blue — workspace indicators in an idle state */
+  color:     #5ea1ff;
 }
 
 #workspaces button.active {
   opacity: 1;
-  color: #e5e5e5;
+  /* Full white: this workspace has focus */
+  color:   #ffffff;
 }
 
 #workspaces button:hover {
   opacity: 0.7;
-  color: #ffffff;
+  color:   #ffffff;
 }
 
-/* Core modules */
+/* ---------------------------------------------------------------------------
+   CORE STATUS MODULES
+   cpu, battery, pulseaudio, custom/update share the same sizing and margin.
+   Color is a mid-brightness gray so they don't compete with clock/workspaces.
+--------------------------------------------------------------------------- */
 #cpu,
 #battery,
 #pulseaudio,
-#custom-omarchy,
-#custom-screenrecording-indicator,
 #custom-update {
   min-width: 12px;
-  margin: 0 7.5px;
-  color: #c0c0c0;
+  margin:    0 7.5px;
+  /* Dim white — visible but clearly secondary to the clock */
+  color:     #c0c0c0;
 }
 
-/* Battery */
+/* ---------------------------------------------------------------------------
+   BATTERY STATES
+   warning and critical states get bumped to full foreground white so they
+   stand out without needing a distracting color change.
+--------------------------------------------------------------------------- */
 #battery.charging,
 #battery.warning:not(.charging),
 #battery.critical:not(.charging) {
   color: #e5e5e5;
 }
 
-/* Pulseaudio */
+/* ---------------------------------------------------------------------------
+   PULSEAUDIO
+   Muted state uses color8 (dim gray) — clearly distinct from active volume.
+--------------------------------------------------------------------------- */
 #pulseaudio.muted {
   color: #666666;
 }
 
-/* Tray & system icons */
-#tray { margin-right: 16px; }
+/* ---------------------------------------------------------------------------
+   TRAY
+   Extra right margin so tray icons have air between them and the bar edge.
+--------------------------------------------------------------------------- */
+#tray {
+  margin-right: 16px;
+}
 
+/* ---------------------------------------------------------------------------
+   BLUETOOTH
+   Idle: same dim white as other status modules.
+   Disabled: color8 dark gray — clearly off.
+--------------------------------------------------------------------------- */
 #bluetooth {
   margin-right: 17px;
-  color: #c0c0c0;
+  color:        #c0c0c0;
 }
 
 #bluetooth.disabled {
   color: #666666;
 }
 
+/* ---------------------------------------------------------------------------
+   NETWORK
+   Disconnected state uses dim gray — clearly "no signal".
+--------------------------------------------------------------------------- */
 #network {
   margin-right: 13px;
-  color: #c0c0c0;
+  color:        #c0c0c0;
 }
 
 #network.disconnected {
   color: #666666;
 }
 
-#custom-expand-icon {
-  margin-right: 18px;
-  color: #666666;
-}
-
-/* Clock */
+/* ---------------------------------------------------------------------------
+   CLOCK
+   Slightly larger left margin to create visual separation from the update
+   badge that sits to its right in the center group.
+--------------------------------------------------------------------------- */
 #clock {
   margin-left: 8.75px;
-  color: #e5e5e5;
+  /* Full foreground white: the clock is the most-read element in the bar */
+  color:       #e5e5e5;
 }
 
-/* Tooltip */
+/* ---------------------------------------------------------------------------
+   TOOLTIP
+   Matches the bar aesthetic: black background, subtle border from color8,
+   foreground white text.
+--------------------------------------------------------------------------- */
 tooltip {
-  background: #111111;
-  border: 1px solid #2a2a2a;
-  color: #e5e5e5;
-  padding: 2px;
+  background: #000000;
+  border:     1px solid #3c4048;
+  color:      #e5e5e5;
+  padding:    2px;
 }
 
-/* Update module */
+/* ---------------------------------------------------------------------------
+   CUSTOM: UPDATE COUNT BADGE
+   Smaller font because it's a numeric badge next to the clock, not a primary
+   status indicator.
+--------------------------------------------------------------------------- */
 #custom-update {
   font-size: 10px;
-  color: #c0c0c0;
+  color:     #c0c0c0;
 }
 
-/* Hidden class */
-.hidden { opacity: 0; }
-
-/* Screen recording indicator */
-#custom-screenrecording-indicator {
-  min-width: 12px;
-  margin-left: 5px;
-  font-size: 10px;
-  padding-bottom: 1px;
-  color: #666666;
-}
-
-#custom-screenrecording-indicator.active {
-  color: #e5e5e5;
-}
-
-/* Voxtype */
-#custom-voxtype {
-  min-width: 12px;
-  margin: 0 0 0 7.5px;
-  color: #c0c0c0;
-}
-
-#custom-voxtype.recording {
-  color: #e5e5e5;
+/* ---------------------------------------------------------------------------
+   UTILITY
+   Hidden class: fully transparent but still occupies layout space, which
+   prevents other modules from shifting when it becomes visible.
+--------------------------------------------------------------------------- */
+.hidden {
+  opacity: 0;
 }
