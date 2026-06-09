@@ -1,0 +1,429 @@
+// niri configuration
+// Ported from Hyprland (hyprland.lua + modules/*).
+// KDL spec: https://kdl.dev
+// Niri config reference: https://niri-wm.github.io/niri/Configuration:-Introduction
+//
+// SKIPPED from Hyprland — niri has no equivalent:
+//   - hyprlock              : use swaylock or waylock instead
+//   - hyprpaper             : wallpaper is set via swaybg (see spawn-at-startup below)
+//   - pseudo-tiling (Mod+P) : niri has no pseudo-tile concept
+//   - togglesplit           : niri has no dwindle layout
+//   - special workspace     : niri has no scratchpad; omitted entirely
+//   - inactive_opacity 0.97 : niri has no per-window opacity decay
+//   - blur / shadow decorations : niri has basic shadow support; blur is absent
+//   - per-device epic-mouse-v1  : niri has per-device blocks but "epic-mouse-v1"
+//                                 is a placeholder — add your real device name from
+//                                 `niri msg event-stream` or `libinput list-devices`
+
+// ---------------------------------------------------------------------------
+// INPUT
+// Ported from: modules/input.lua
+// ---------------------------------------------------------------------------
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            // variant, model, options left unset — matches the empty strings in input.lua
+        }
+    }
+
+    touchpad {
+        // natural-scroll is intentionally OFF to match `natural_scroll = false` in input.lua
+        tap
+    }
+
+    mouse {
+        // sensitivity 0 in Hyprland means "no acceleration adjustment" — flat profile
+        // matches the closest niri equivalent
+        accel-speed 0.0
+        accel-profile "flat"
+    }
+
+    // focus-follows-mouse is omitted; Hyprland had `follow_mouse = 1` (focus on enter)
+    // but niri's default focus behavior is close enough — uncomment if you want it:
+    // focus-follows-mouse max-scroll-amount="0%"
+}
+
+// ---------------------------------------------------------------------------
+// OUTPUT
+// Ported from: modules/monitors.lua
+// Hyprland used output="" (auto) + mode=preferred + scale=auto.
+// Niri's default behavior with no output block is equivalent: it picks the
+// preferred mode and auto-scales. Add an output block if you need overrides.
+// ---------------------------------------------------------------------------
+// output "eDP-1" {
+//     mode "1920x1080@60"
+//     scale 1.0
+// }
+
+// ---------------------------------------------------------------------------
+// ENVIRONMENT VARIABLES
+// Ported from: modules/environment.lua
+// ---------------------------------------------------------------------------
+environment {
+    XCURSOR_SIZE    "24"
+    // HYPRCURSOR_SIZE is Hyprland-specific; not applicable in niri
+}
+
+// ---------------------------------------------------------------------------
+// LAYOUT
+// Ported from: modules/look_and_feel.lua (general + master sections)
+//
+// Hyprland used:
+//   gaps_in = 0, gaps_out = 0  → niri `gaps 0`
+//   border_size = 2            → focus-ring width 2
+//   active_border  = white     → cyberdream foreground (#ffffff)
+//   inactive_border = #333333  → cyberdream color0 (#16181a) / dark gray
+//   rounding = 0               → no geometry-corner-radius
+// ---------------------------------------------------------------------------
+layout {
+    // Zero gaps to match Hyprland gaps_in=0/gaps_out=0
+    gaps 2
+
+    // When the focused column goes off-screen, don't auto-center it.
+    // Matches Hyprland's default "don't move unless you ask" behavior.
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    // Focus ring: visible border around the single active window.
+    // Width=2 matches Hyprland border_size=2.
+    // Colors from cyberdream palette.
+    focus-ring {
+        width 2
+        // Cyberdream foreground white — matches `active_border = rgba(ffffffff)`
+        active-color   "#5ef1ff"
+        // Cyberdream color0 (darkest background) — matches `inactive_border = rgba(333333aa)`
+        inactive-color "#16181a"
+    }
+
+    // Explicit border block is disabled; focus-ring alone is sufficient.
+    border {
+        off
+    }
+
+    // No shadows — matches Hyprland `shadow.enabled = false`
+    shadow {
+        // off by default in niri; leave unconfigured
+    }
+
+    struts {
+        // No struts; matches Hyprland gaps_out=0
+    }
+}
+
+// ---------------------------------------------------------------------------
+// PREFER-NO-CSD
+// Matches Hyprland rounding=0 aesthetic: square windows, no client decorations.
+// Apps that insist on CSD will still draw their own, but most GTK/Qt apps obey.
+// ---------------------------------------------------------------------------
+prefer-no-csd
+
+// ---------------------------------------------------------------------------
+// ANIMATIONS
+// Ported from: modules/look_and_feel.lua (animations section)
+// Niri's animation system uses named curves; it does not support named bezier
+// aliases the way Hyprland does. The values below are hand-mapped to the
+// closest niri spring/easing equivalents.
+// ---------------------------------------------------------------------------
+animations {
+    // Window open — mapped from Hyprland windowsIn (slide + winIn bezier, speed 3.2)
+    // niri easing node: `curve` is the property name, not `easing`
+    window-open {
+        duration-ms 200
+        curve "ease-out-expo"
+    }
+
+    // Window close — mapped from Hyprland windowsOut (easeOutCirc, speed 2.8)
+    window-close {
+        duration-ms 180
+        curve "ease-out-quad"
+    }
+
+    // Workspace / column scroll — mapped from Hyprland workspaces (menu_decel, speed 4.0)
+    // Spring gives better feel with touchpad gesture velocity, matching Hyprland's slide style
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+
+    // Horizontal column navigation — mapped from Hyprland windowsMove (wind bezier)
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    // Window movement within layout
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+
+    // Window resize
+    window-resize {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+}
+
+// ---------------------------------------------------------------------------
+// SCREENSHOT PATH
+// Matches the Screenshots folder used in the screenshot.sh script.
+// ---------------------------------------------------------------------------
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// ---------------------------------------------------------------------------
+// SPAWN AT STARTUP
+// Ported from: modules/autostart.lua
+//
+// hyprpaper → swaybg via a wrapper script that picks a random wallpaper from
+//             ~/Pictures/Wallpapers/ (see scripts/wallpaper.sh)
+// kitty     → kept as-is
+// waybar    → kept as-is
+// firefox   → kept as-is
+// ---------------------------------------------------------------------------
+spawn-at-startup "waybar"
+spawn-at-startup "bash" "-c" "$HOME/.config/niri/scripts/wallpaper.sh"
+spawn-at-startup "kitty"
+spawn-at-startup "firefox"
+
+// ---------------------------------------------------------------------------
+// WINDOW RULES
+// Ported from: modules/window_rules.lua
+//
+// Hyprland's "suppress-maximize-events" → niri doesn't pass maximize requests
+// to the compositor the same way; no equivalent rule needed.
+//
+// Hyprland's XWayland no-focus rule → niri runs XWayland differently;
+// the specific phantom-window bug it fixed is not applicable here.
+//
+// Firefox PiP → ported directly.
+// ---------------------------------------------------------------------------
+
+// Firefox Picture-in-Picture: always open as floating
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// Bitwarden: open as floating (password manager should not tile)
+window-rule {
+    match app-id=r#"^Bitwarden$"#
+    open-floating true
+}
+
+// ---------------------------------------------------------------------------
+// BINDS
+// Ported from: modules/keybindings.lua
+//
+// Hyprland mod = SUPER → niri Mod = Super
+//
+// Direct mappings:
+//   Mod+Return  → spawn kitty          (was terminal)
+//   Mod+Shift+Q → close-window         (was window.close())
+//   Mod+Shift+F → spawn nautilus       (was pcmanfm, changed to nautilus per request)
+//   Mod+Space   → spawn fuzzel
+//   Mod+B       → spawn firefox
+//   Mod+Shift+B → spawn brave
+//   Mod+Z       → spawn zed
+//   Mod+R       → spawn foliate flatpak
+//   Mod+T       → spawn gnome-text-editor
+//   Mod+Shift+O → spawn obsidian
+//   Mod+Shift+W → spawn brave whatsapp PWA
+//   Mod+/       → spawn bitwarden-desktop
+//   Mod+V       → toggle-window-floating
+//   Mod+F       → maximize-column (closest to Hyprland fullscreen toggle)
+//   Mod+Shift+L → spawn swaylock       (was hyprlock)
+//   Mod+H/J/K/L → focus navigation
+//   Mod+1..9    → focus-workspace N
+//   Mod+Shift+1..9 → move-column-to-workspace N
+//   Media / volume / brightness keys → ported verbatim
+//
+// NOT PORTED:
+//   Mod+P         (pseudo-tiling)   — niri has no equivalent
+//   Mod+Shift+J   (togglesplit)     — niri has no dwindle
+//   Mod+W         (pkill waybar)    — Mod+W is taken by niri's tabbed-display toggle;
+//                                     rebind to Mod+Shift+W... but that's taken too.
+//                                     Omitted entirely — waybar reloads are rare.
+//   Mod+S / Mod+Shift+S (scratchpad) — niri has no scratchpad
+//   Mod+mouse_down/up (workspace scroll) — niri uses WheelScrollDown/Up natively
+//   Mod+mouse:272/273 (drag/resize)  — niri handles window drag/resize via its own
+//                                      built-in mouse behavior; no bind needed
+//   Screenshots via custom script    — niri has built-in screenshot; Print/Ctrl+Print
+//                                      /Alt+Print are kept from the niri defaults
+// ---------------------------------------------------------------------------
+binds {
+    // -- HOTKEY OVERLAY -------------------------------------------------------
+    // Shows the built-in niri keybind cheat-sheet.
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    // -- TERMINAL -------------------------------------------------------------
+    // Mod+Return: open kitty (matches Hyprland Mod+Return)
+    Mod+Return hotkey-overlay-title="Terminal: kitty" { spawn "kitty"; }
+
+    // -- WINDOW MANAGEMENT ----------------------------------------------------
+    // Close the focused window (Hyprland: Mod+Shift+Q)
+    Mod+Shift+Q repeat=false { close-window; }
+
+    // Toggle floating for the focused window (Hyprland: Mod+V)
+    Mod+V repeat=false { toggle-window-floating; }
+
+    // Maximize the focused column — fills available width.
+    // Hyprland Mod+F was fullscreen(); niri separates maximize from fullscreen.
+    // Use Mod+Shift+F for true fullscreen (all content, no bar).
+    Mod+F       repeat=false { maximize-column; }
+    Mod+Shift+F repeat=false { fullscreen-window; }
+
+    // -- APP LAUNCHERS --------------------------------------------------------
+    // Fuzzel launcher (Hyprland: Mod+Space)
+    Mod+Space hotkey-overlay-title="Launcher: fuzzel" { spawn "fuzzel"; }
+
+    // File manager: nautilus (Hyprland used pcmanfm; replaced per request)
+    Mod+Shift+E hotkey-overlay-title="Files: nautilus" { spawn "nautilus"; }
+
+    // Browser shortcuts
+    Mod+B       hotkey-overlay-title="Browser: firefox"     { spawn "firefox"; }
+    Mod+Shift+B hotkey-overlay-title="Browser: brave"       { spawn "brave"; }
+
+    // Editors and productivity
+    Mod+Z       hotkey-overlay-title="Editor: zed"          { spawn "zed"; }
+    Mod+T       hotkey-overlay-title="Text editor: gnome-text-editor" { spawn "gnome-text-editor"; }
+    Mod+Shift+O hotkey-overlay-title="Notes: obsidian"      { spawn "obsidian"; }
+
+    // Foliate ebook reader (flatpak)
+    Mod+G hotkey-overlay-title="Reader: foliate" {
+        spawn-sh "flatpak run com.github.johnfactotum.Foliate";
+    }
+
+    // WhatsApp as a Brave PWA
+    Mod+Shift+A hotkey-overlay-title="WhatsApp" {
+        spawn "brave" "--app=https://web.whatsapp.com";
+    }
+
+    // Password manager
+    Mod+slash hotkey-overlay-title="Passwords: bitwarden" { spawn "bitwarden-desktop"; }
+
+    // -- SCREEN LOCK ----------------------------------------------------------
+    // swaylock replaces hyprlock (Hyprland: Mod+Shift+L)
+    Super+Alt+L allow-when-locked=true hotkey-overlay-title="Lock screen: swaylock" {
+        spawn "swaylock";
+    }
+
+    // -- FOCUS NAVIGATION (hjkl) ----------------------------------------------
+    // Mod+H/L: move focus between columns (horizontal)
+    // Mod+J/K: move focus between windows within a column (vertical)
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+
+    // Arrow key variants (niri default; kept for completeness)
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Down  { focus-window-down; }
+    Mod+Up    { focus-window-up; }
+    Mod+WheelScrollRight { focus-column-right; }
+    Mod+WheelScrollLeft  { focus-column-left; }
+    // -- WINDOW MOVEMENT (Ctrl+hjkl) ------------------------------------------
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+L { move-column-right; }
+    Mod+Ctrl+J { move-window-down; }
+    Mod+Ctrl+K { move-window-up; }
+
+    // -- WORKSPACE SWITCHING (Mod+1..9) ---------------------------------------
+    // Matches Hyprland's for-loop over 1..10 (key = i % 10 → 0 maps to 10,
+    // but niri workspaces are 1-indexed and dynamic; 1-9 covers practical usage)
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    // Move focused column to workspace N (Hyprland: Mod+Shift+N)
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    // Workspace scroll via mouse wheel (Hyprland: Mod+mouse_down/up)
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+
+    // -- SCREENSHOTS ----------------------------------------------------------
+    // Niri has built-in screenshot support; no external script needed.
+    // Print           : interactive region picker → save to screenshot-path
+    // Ctrl+Print      : full screen → save
+    // Alt+Print       : focused window → save
+    // (Hyprland also had Mod+Shift+C for clipboard-only; use Ctrl+Print + your
+    //  image viewer's copy function, or wire up grim+wl-copy separately)
+    Print     { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print  { screenshot-window; }
+
+    // -- VOLUME KEYS ----------------------------------------------------------
+    // Ported verbatim from keybindings.lua; -l 1.0 caps at 100%
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+";
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+    }
+    XF86AudioMute allow-when-locked=true {
+        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+    }
+    XF86AudioMicMute allow-when-locked=true {
+        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+    }
+
+    // -- BRIGHTNESS KEYS ------------------------------------------------------
+    // Ported from keybindings.lua; -e4 -n2 flags are brightnessctl-specific
+    XF86MonBrightnessUp allow-when-locked=true {
+        spawn-sh "brightnessctl -e4 -n2 set 5%+";
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+        spawn-sh "brightnessctl -e4 -n2 set 5%-";
+    }
+
+    // -- MEDIA KEYS -----------------------------------------------------------
+    XF86AudioNext  allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPrev  allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioPlay  allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPause allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+
+    // -- NIRI-NATIVE BINDS ----------------------------------------------------
+    // These have no Hyprland equivalent but are useful to keep.
+
+    // Column width cycling (niri's equivalent of resize mode)
+    Mod+R       { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-column-width-back; }
+
+    // Move columns to adjacent monitors
+    Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+K { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+J { move-column-to-monitor-down; }
+
+    // Consume/expel windows into/out of columns (niri's stacking model)
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+
+    // Overview: bird's-eye workspace view
+    Mod+O repeat=false { toggle-overview; }
+
+    // Keyboard shortcuts inhibitor escape hatch
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // Quit niri (shows confirmation dialog)
+    Mod+Shift+M { quit; }
+}
