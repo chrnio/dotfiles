@@ -1,9 +1,0 @@
-# ~/.config/sway/config
-
-include ~/.config/sway/conf.d/colors
-include ~/.config/sway/conf.d/output
-include ~/.config/sway/conf.d/input
-include ~/.config/sway/conf.d/look
-include ~/.config/sway/conf.d/keybindings
-include ~/.config/sway/conf.d/window_rules
-include ~/.config/sway/conf.d/autostart

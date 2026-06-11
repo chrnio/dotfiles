@@ -1,9 +1,0 @@
-exec_always waybar
-exec        kitty
-exec        zen-browser
-exec /usr/bin/gnome-keyring-daemon --start --components=secrets
-
-exec_always {
-    gsettings set org.gnome.desktop.interface cursor-size 24
-    gsettings set org.gnome.desktop.interface cursor-theme default
-}
