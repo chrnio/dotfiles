@@ -1,0 +1,71 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "proxy": "",
+  "soft_wrap": "none",
+  "hard_tabs": false,
+  "show_wrap_guides": true,
+  "cursor_shape": "bar",
+  "toolbar": {
+    "code_actions": false,
+    "agent_review": true,
+    "selections_menu": true,
+    "quick_actions": false,
+    "breadcrumbs": true
+  },
+  "minimap": {
+    "thumb": "hover",
+    "thumb_border": "full",
+    "display_in": "active_editor",
+    "show": "always"
+  },
+  "scrollbar": {
+    "search_results": true,
+    "git_diff": true,
+    "cursors": true
+  },
+  "gutter": {
+    "runnables": true,
+    "breakpoints": true,
+    "bookmarks": true,
+    "folds": true
+  },
+  "which_key": {
+    "enabled": false
+  },
+  "autosave": "off",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+    "anthropic_retention": false
+  },
+  "buffer_line_height": "standard",
+  "relative_line_numbers": "enabled",
+  "vim": {
+    "cursor_shape": {
+      "normal": "block"
+    },
+    "use_smartcase_find": false,
+    "toggle_relative_line_numbers": true
+  },
+  "helix_mode": false,
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "vim_mode": true,
+  "icon_theme": "Zed (Default)",
+  "ui_font_size": 16,
+  "buffer_font_size": 14.0,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+}
