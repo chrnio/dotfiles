@@ -1,5 +1,5 @@
 general.import = [
-  "~/.config/alacritty/themes/tokyonight.toml"
+  "~/.config/alacritty/themes/catppuccin.toml"
 ]
 
 [env]
@@ -52,9 +52,8 @@ save_to_clipboard = true
 
 [terminal]
 
-# [terminal.shell]
-# program = "/usr/bin/tmux"
-# args = ["-u", "new-session", "-A", "-s", "main"]
+[terminal.shell]
+program = "/usr/bin/zellij"
 
 [keyboard]
 
