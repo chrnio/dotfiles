@@ -4,30 +4,44 @@
   "position": "top",
   "spacing": 0,
   "height": 26,
+
   "modules-left": [
-    "hyprland/workspaces"
+    "sway/workspaces"
   ],
+
   "modules-center": [
     "clock"
   ],
+
   "modules-right": [
     "tray",
     "pulseaudio",
     "bluetooth",
     "network"
   ],
-  "hyprland/workspaces": {
-    "format": "{id}",
-    "on-click": "activate",
-    "sort-by-number": true,
-    "persistent-workspaces": {
-      "*": 10
-    }
-  },
+
+      "sway/workspaces": {
+        "format": "{name}",
+        "disable-scroll": true,
+        "all-outputs": false,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+    },
   "clock": {
     "format": "{:%a %d %H:%M}",
     "tooltip": false
   },
+
   "network": {
     "format-icons": [
       "󰤯",
@@ -40,20 +54,26 @@
     "format-ethernet": "󰈀",
     "format-disconnected": "󰤮",
     "interval": 3,
-    "on-click": "kitty -e nmtui"
+
+    "on-click": "alacritty -e nmtui"
   },
+
   "bluetooth": {
     "format": "󰂯",
     "format-disabled": "󰂲",
     "format-off": "󰂲",
     "format-connected": "󰂱",
     "format-no-controller": "",
+
     "tooltip-format": "{device_alias}",
-    "on-click": "kitty -e bluetui"
+
+    "on-click": "alacritty -e bluetui"
   },
+
   "pulseaudio": {
     "format": "{icon}",
     "format-muted": "󰝟",
+
     "format-icons": {
       "headphone": "󰋋",
       "default": [
@@ -62,11 +82,16 @@
         "󰕾"
       ]
     },
+
     "tooltip-format": "Volume {volume}%",
-    "scroll-step": 5,
+
     "on-click": "pavucontrol",
-    "on-click-right": "pamixer -t"
+    "on-click-right": "pamixer -t",
+
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5"
   },
+
   "tray": {
     "icon-size": 16,
     "spacing": 20
