@@ -1,4 +1,3 @@
-# skip CachyOS global compinit (/etc/zsh/zshrc runs it — we do it ourselves)
 skip_global_compinit=1
 
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
@@ -13,8 +12,6 @@ source "$ZINIT_HOME/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-
-# PLUGINS
 
 # completions database — load early so other plugins can use it
 zinit ice wait lucid blockf
@@ -40,9 +37,6 @@ zinit light MichaelAquilina/zsh-you-should-use
 # fast-syntax-highlighting — must be sourced last among plugins
 zinit ice wait lucid atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay'
 zinit light zdharma-continuum/fast-syntax-highlighting
-
-
-# EXTRA COMPLETIONS (generated at runtime)
 
 # only generate these if the command exists and zinit doesn't already have the snippet
 function _zinit_snip_if() {
@@ -104,9 +98,7 @@ zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview \
     'SYSTEMD_COLORS=1 systemctl status $word 2>/dev/null | bat --color=always -l ini'
 
 
-# -----------------------------------------------------------------------------
 # SHELL OPTIONS
-# -----------------------------------------------------------------------------
 
 setopt AUTO_CD CDABLE_VARS AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
 setopt EXTENDED_GLOB GLOB_DOTS NULL_GLOB
@@ -114,9 +106,7 @@ setopt INTERACTIVE_COMMENTS NO_BEEP
 setopt CORRECT
 
 
-# -----------------------------------------------------------------------------
 # HISTORY
-# -----------------------------------------------------------------------------
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=200000
@@ -127,9 +117,7 @@ setopt HIST_FIND_NO_DUPS HIST_IGNORE_SPACE HIST_VERIFY
 setopt SHARE_HISTORY INC_APPEND_HISTORY
 
 
-# -----------------------------------------------------------------------------
 # ENVIRONMENT
-# -----------------------------------------------------------------------------
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -162,9 +150,7 @@ path=(
 export PATH
 
 
-# -----------------------------------------------------------------------------
 # KEY BINDINGS
-# -----------------------------------------------------------------------------
 
 bindkey -e                                        # emacs line editing
 
@@ -181,9 +167,7 @@ bindkey '^[[3;5~' kill-word                       # Ctrl-Delete
 bindkey '^ '      autosuggest-accept              # Ctrl-Space: accept suggestion
 bindkey '^[^M'    autosuggest-execute             # Alt-Enter: accept + run
 
-# -----------------------------------------------------------------------------
 # FZF
-# -----------------------------------------------------------------------------
 
 source <(fzf --zsh)    # Ctrl-T, Alt-C, Ctrl-R
 
@@ -241,16 +225,12 @@ export FZF_CTRL_R_OPTS="
   --header='Ctrl-Y to copy  |  Ctrl-/ to preview'
 "
 
-# -----------------------------------------------------------------------------
 # ZOXIDE
-# -----------------------------------------------------------------------------
 
 eval "$(zoxide init zsh --cmd cd)"
 
 
-# -----------------------------------------------------------------------------
 # AUTOSUGGESTIONS
-# -----------------------------------------------------------------------------
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
@@ -258,9 +238,7 @@ ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#585b70,italic"   # Mocha surface2
 
 
-# -----------------------------------------------------------------------------
 # ALIASES — navigation
-# -----------------------------------------------------------------------------
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -272,21 +250,17 @@ alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 
-# -----------------------------------------------------------------------------
 # ALIASES — eza
-# -----------------------------------------------------------------------------
 
 alias ls='eza --icons=always --group-directories-first --color=always -l --git --git-repos'
 alias lsa='eza --icons=always --group-directories-first --color=always -la --git --git-repos'
 
-# -----------------------------------------------------------------------------
 # ALIASES — editors / core tools
-# -----------------------------------------------------------------------------
 
 alias v='nvim'
-alias vi='nvim'
-alias vim='nvim'
-alias nv='nvim .'
+# alias vi='nvim'
+# alias vim='nvim'
+# alias nv='nvim .'
 alias lg='lazygit'
 alias tmux='tmux -u'
 # alias ta='tmux attach || tmux new-session -s main'
@@ -308,9 +282,7 @@ alias paste='wl-paste'
 alias dl='aria2c -x16 -s16 -k1M'
 
 
-# -----------------------------------------------------------------------------
 # ALIASES — paru
-# -----------------------------------------------------------------------------
 
 alias psi='paru -S --needed'
 alias psi!='paru -S --needed --noconfirm'
@@ -322,9 +294,7 @@ alias pql='paru -Ql'
 alias orphans='paru -Qtdq | paru -Rns -'
 
 
-# -----------------------------------------------------------------------------
 # ALIASES — git
-# -----------------------------------------------------------------------------
 
 alias g='git'
 alias gs='git status -sb'
@@ -348,9 +318,7 @@ alias gcp='git cherry-pick'
 alias gbl='git blame -w'
 
 
-# -----------------------------------------------------------------------------
 # ALIASES — python / uv
-# -----------------------------------------------------------------------------
 
 alias py='python'
 alias py3='python3'
@@ -363,9 +331,7 @@ alias pipu='uv pip install --upgrade'
 alias pipl='uv pip list'
 
 
-# -----------------------------------------------------------------------------
 # ALIASES — node / pnpm
-# -----------------------------------------------------------------------------
 
 alias ni='pnpm install'
 alias na='pnpm add'
@@ -378,9 +344,7 @@ alias nrl='pnpm run lint'
 alias nrp='pnpm run preview'
 
 
-# -----------------------------------------------------------------------------
 # ALIASES — rust
-# -----------------------------------------------------------------------------
 
 alias cb='cargo build'
 alias cbr='cargo build --release'
@@ -402,9 +366,12 @@ alias gom='go mod tidy'
 
 # ALIASES — config
 alias zrc='nvim ~/.zshrc'
+alias ff='fastfetch'
 alias hylua='nvim ~/.config/hypr/hyprland.lua'
 alias hymod='nvim ~/.config/hypr/modules/'
 alias kconf='nvim ~/.config/kitty/kitty.conf'
+alias aconf='nvim ~/.config/alacritty/alacritty.toml'
+alias zelconf='nvim ~/.config/zellij/config.kdl'
 alias fdfont='fc-list | grep'
 alias szrc='source ~/.zshrc'
 alias nrc='nvim ~/.config/nvim/'
@@ -518,16 +485,4 @@ function topcmds() {
     history 1 | awk '{print $2}' | sort | uniq -c | sort -rn | head 10
 }
 
-# -----------------------------------------------------------------------------
-# FISH SHELL — kill CachyOS default
-# run once manually: chsh -s $(which zsh)
-# -----------------------------------------------------------------------------
-
-unset fish_greeting 2>/dev/null
-[[ -n "$fish_pid" ]] && exec zsh   # escape if somehow launched from fish
-
-
-# -----------------------------------------------------------------------------
-# STARSHIP
-# -----------------------------------------------------------------------------
 command -v starship &>/dev/null && eval "$(starship init zsh)"
