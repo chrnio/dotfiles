@@ -384,7 +384,7 @@ alias szrc='source ~/.zshrc'
 alias nrc='nvim ~/.config/nvim/'
 alias src='nvim ~/.config/starship.toml'
 alias bt='bluetui'
-alias vclr='v ~/.config/nvim/lua/plugins/theme.lua'
+alias vclr='v ~/.config/nvim/lua/plugins/colorscheme.lua'
 
 alias torr='transmission-cli -w ~/Downloads/torrents -f'
 
