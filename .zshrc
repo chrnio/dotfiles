@@ -58,20 +58,21 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/compcache"
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=34=0'
 zstyle ':completion:*:*:*:*:processes'   command "ps -u $USER -o pid,user,comm -w"
 
-# FZF-TAB (Cyberdream)
+# FZF-TAB (Tokyo Night Night)
+
 zstyle ':fzf-tab:*' fzf-flags \
-    '--color=bg:#16181a,bg+:#3c4048' \
-    '--color=fg:#ffffff,fg+:#ffffff' \
-    '--color=hl:#5ea1ff,hl+:#5ef1ff' \
-    '--color=border:#3c4048,gutter:#16181a' \
-    '--color=spinner:#bd5eff,info:#a0a8cd,header:#a0a8cd' \
-    '--color=prompt:#ffbd5e,pointer:#bd5eff,marker:#5eff6c' \
-    '--layout=reverse' \
-    '--border=rounded' \
-    '--prompt=  ' \
-    '--pointer=>' \
-    '--marker=*' \
-    '--min-height=8'
+  '--height=40%' \
+  '--layout=reverse' \
+  '--color=bg:#1a1b26,bg+:#283457' \
+  '--color=fg:#c0caf5,fg+:#c0caf5' \
+  '--color=hl:#7dcfff,hl+:#7dcfff' \
+  '--color=prompt:#7aa2f7' \
+  '--color=pointer:#bb9af7' \
+  '--color=marker:#9ece6a' \
+  '--color=border:#27a1b9' \
+  '--color=header:#e0af68' \
+  '--color=info:#73daca' \
+  '--color=spinner:#f7768e'
 
 # previews per context
 zstyle ':fzf-tab:complete:*' fzf-preview \
@@ -118,6 +119,10 @@ setopt SHARE_HISTORY INC_APPEND_HISTORY
 
 
 # ENVIRONMENT
+export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORMTHEME=qt6ct
+export QT_STYLE_OVERRIDE=Fusion
+export QT_QUICK_CONTROLS_STYLE=Fusion
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -369,6 +374,7 @@ alias zrc='nvim ~/.zshrc'
 alias ff='fastfetch'
 alias hylua='nvim ~/.config/hypr/hyprland.lua'
 alias hymod='nvim ~/.config/hypr/modules/'
+alias swayconf='nvim ~/.config/sway/config'
 alias kconf='nvim ~/.config/kitty/kitty.conf'
 alias aconf='nvim ~/.config/alacritty/alacritty.toml'
 alias zelconf='nvim ~/.config/zellij/config.kdl'
@@ -378,6 +384,8 @@ alias nrc='nvim ~/.config/nvim/'
 alias src='nvim ~/.config/starship.toml'
 alias bt='bluetui'
 alias vclr='v ~/.config/nvim/lua/plugins/theme.lua'
+
+alias torr='transmission-cli -w ~/Downloads/torrents -f'
 
 # FUNCTIONS
 # yazi — cd on exit (official wrapper)
