@@ -129,7 +129,7 @@ export VISUAL="nvim"
 export PAGER="bat --paging=always"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
-export BAT_THEME="Catppuccin Mocha"
+export BAT_THEME="tokyonight_night"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
