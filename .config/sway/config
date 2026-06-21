@@ -6,30 +6,42 @@ set $right l
 
 # defaults
 set $term foot
-set $menu fuzzel
+set $menu wofi --show drun
 set $browser firefox
 set $file_manager "foot -e yazi"
 
-exec waybar
 exec mako
 exec $browser
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
+exec_always pkill -f "wl-paste.*clipman"
+exec_always /usr/sbin/wl-paste -t text --watch sh -c 'clipman store'
+exec_always /usr/sbin/wl-paste --primary -t text --watch sh -c 'clipman store'
 
-font pango:JetBrainsMono NF Medium 11
+font pango:JetBrainsMono NF Medium 12
 
-
-output * bg /home/chrnio/Pictures/wallpapers/pixel-sky.png fill
+# wallpaper
+output * bg /home/chrnio/Pictures/walls/pixel-sky.png fill
 
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 
+# input
+input type:touchpad {
+    tap enabled
+    tap_button_map lrm
+    natural_scroll enabled
+    dwt enabled
+    click_method clickfinger
+}
 
     
     bindsym $mod+Return exec $term
     bindsym $mod+Shift+q kill
     bindsym $mod+d exec $menu
+    bindsym $mod+Shift+m exec clipman pick --tool=fuzzel
     floating_modifier $mod normal
     bindsym $mod+Shift+r reload
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -138,16 +150,14 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
-
-
 bar {
     position top
 
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command while date +"BAT $(cat /sys/class/power_supply/BAT0/capacity)%% | %a %d %b | %H:%M"; do sleep 30; done
 
     colors {
         statusline #ffffff
-        background #000000
+        background #202020
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
