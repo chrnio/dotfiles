@@ -495,3 +495,6 @@ function topcmds() {
 }
 
 command -v starship &>/dev/null && eval "$(starship init zsh)"
+
+# opencode
+export PATH=/home/chrnio/.opencode/bin:$PATH
