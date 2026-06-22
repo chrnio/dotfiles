@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 skip_global_compinit=1
 
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
@@ -44,7 +51,22 @@ function _zinit_snip_if() {
     [[ ! -f "${ZINIT[SNIPPETS_DIR]}/$id" ]] && command -v "${1%% *}" &>/dev/null && "$@"
 }
 
+# ----------------------------
+# Powerlevel10k bootstrap
+# ----------------------------
 
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+P10K_DIR="$ZSH_CUSTOM/themes/powerlevel10k"
+
+if [[ ! -d "$P10K_DIR" ]]; then
+    print -P "%F{105}bootstrapping powerlevel10k...%f"
+    mkdir -p "$ZSH_CUSTOM/themes"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$P10K_DIR"
+fi
+
+# Theme
+ZSH_THEME="powerlevel10k/powerlevel10k"
+source "$P10K_DIR/powerlevel10k.zsh-theme"
 
 zstyle ':completion:*' menu no                 # hand off to fzf-tab
 zstyle ':completion:*' matcher-list \
@@ -494,7 +516,10 @@ function topcmds() {
     history 1 | awk '{print $2}' | sort | uniq -c | sort -rn | head 10
 }
 
-command -v starship &>/dev/null && eval "$(starship init zsh)"
+# command -v starship &>/dev/null && eval "$(starship init zsh)"
 
 # opencode
 export PATH=/home/chrnio/.opencode/bin:$PATH
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
