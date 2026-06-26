@@ -6,9 +6,10 @@ set $right l
 
 # defaults
 set $term foot
-set $menu wofi --show drun
+set $menu rofi -show drun
 set $browser firefox
 set $file_manager "foot -e yazi"
+set $alt_file_manager nautilus
 
 exec mako
 exec $browser
@@ -18,10 +19,10 @@ exec_always pkill -f "wl-paste.*clipman"
 exec_always /usr/sbin/wl-paste -t text --watch sh -c 'clipman store'
 exec_always /usr/sbin/wl-paste --primary -t text --watch sh -c 'clipman store'
 
-font pango:JetBrainsMono NF Medium 12
+font pango:JetBrainsMono NF 11
 
 # wallpaper
-output * bg /home/chrnio/Pictures/walls/pixel-sky.png fill
+output * bg /home/chrnio/Pictures/Wallpapers/pixel-sky.png fill
 
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
@@ -153,11 +154,11 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 bar {
     position top
 
-    status_command while date +"BAT $(cat /sys/class/power_supply/BAT0/capacity)%% | %a %d %b | %H:%M"; do sleep 30; done
+    status_command while date +"%a %d %b | %H:%M"; do sleep 30; done
 
     colors {
         statusline #ffffff
-        background #202020
+        background #000000
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
@@ -168,6 +169,7 @@ default_floating_border pixel 2
 
 # apps
 bindsym $mod+Shift+b exec $browser
+bindsym $mod+n exec $alt_file_manager
 bindsym $mod+Shift+f exec $file_manager
 bindsym $mod+Shift+o exec obsidian
 bindsym $mod+z exec zeditor

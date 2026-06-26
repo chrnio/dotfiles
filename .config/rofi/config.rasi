@@ -4,7 +4,6 @@ configuration {
 
 @theme "Arc-Dark"
 
-/* Override the window border color to match Sway's default */
 window {
     border: 2px;
     border-color: #4c7899; 
