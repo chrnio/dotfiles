@@ -1,5 +1,5 @@
 [mgr]
-show_hidden = true
+show_hidden = false
 sort_by = "natural"
 sort_sensitive = false
 sort_reverse = false
@@ -20,15 +20,11 @@ edit = [
 ]
 
 pdf = [
-    { run = 'zathura "$@"', orphan = true }
-]
-
-pdf-edit = [
-    { run = 'okular "$@"', orphan = true }
+    { run = 'papers "$@"', orphan = true }
 ]
 
 image = [
-    { run = 'imv "$@"', orphan = true }
+    { run = 'loupe "$@"', orphan = true }
 ]
 
 video = [
