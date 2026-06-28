@@ -6,7 +6,7 @@ set $right l
 
 # defaults
 set $term foot
-set $menu rofi -show drun
+set $menu wofi --show drun
 set $browser firefox
 set $file_manager "foot -e yazi"
 set $alt_file_manager nautilus
@@ -22,7 +22,7 @@ exec_always /usr/sbin/wl-paste --primary -t text --watch sh -c 'clipman store'
 font pango:JetBrainsMono NF 11
 
 # wallpaper
-output * bg /home/chrnio/Pictures/Wallpapers/pixel-sky.png fill
+output * bg /home/chrnio/Pictures/walls/pixel-sky.png fill
 
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
