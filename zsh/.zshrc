@@ -1,5 +1,4 @@
 # THEME 
-# switch by commenting one block and uncommenting the other, then: szrc
 
 # tokyonight night
 # THEME_NAME="tokyonight_night"
@@ -160,6 +159,7 @@ export GOMODCACHE="$HOME/.cache/go/mod"
 export CARGO_HOME="$HOME/.cargo"
 export RUSTUP_HOME="$HOME/.rustup"
 export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$HOME/.config/emacs/bin:$PATH" # doom emacs
 
 typeset -U path
 path=("$HOME/.local/bin" "$HOME/go/bin" "$HOME/.cargo/bin" "$PNPM_HOME" /usr/local/bin $path)
