@@ -6,7 +6,7 @@ set $right l
 
 # defaults
 set $term foot
-set $menu wofi --show drun
+set $menu rofi -show drun
 set $browser firefox
 set $file_manager "foot -e yazi"
 set $alt_file_manager nautilus
