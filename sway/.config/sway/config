@@ -18,11 +18,11 @@ exec_always pkill -f "wl-paste.*clipman"
 exec_always /usr/sbin/wl-paste -t text --watch sh -c 'clipman store'
 exec_always /usr/sbin/wl-paste --primary -t text --watch sh -c 'clipman store'
 
-font pango:JetBrainsMono NF 11
+font pango:MapleMono Normal NF 11
 seat seat0 xcursor_theme Adwaita 24
 
 # wallpaper
-output * bg /home/chrnio/Pictures/Wallpapers/farm.png fill
+output * bg /home/chrnio/Pictures/Wallpapers/pixel-sky.png fill
 
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
