@@ -4,7 +4,7 @@
 
 ;; font
 (setq doom-font
-      (font-spec :family "Maple Mono Normal" :size 15 :weight 'medium))
+      (font-spec :family "Maple Mono Normal" :size 14 :weight 'medium))
 
 (setq doom-variable-pitch-font
       (font-spec :family "Adwaita Sans" :size 16))
@@ -19,7 +19,10 @@
 ;; org dir
 (setq org-directory "~/org/")
 
-(after! markdown-mode
-  (add-hook 'markdown-mode-hook #'visual-line-mode)
-  (add-hook 'markdown-mode-hook #'mixed-pitch-mode)
-  (add-hook 'markdown-mode-hook #'visual-fill-column-mode))
+(use-package! markdown-mode
+  :hook ((markdown-mode . visual-line-mode)
+         (markdown-mode . mixed-pitch-mode)
+         (markdown-mode . visual-fill-column-mode))
+  :config
+  (setq visual-fill-column-width 120
+        visual-fill-column-center-text t))
