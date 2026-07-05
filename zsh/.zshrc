@@ -1,14 +1,14 @@
 # THEME 
 
 # tokyonight night
-# THEME_NAME="tokyonight_night"
-# THEME_BG="#1a1b26"       THEME_BG_SEL="#283457"
-# THEME_FG="#c0caf5"       THEME_HL="#7dcfff"
-# THEME_PROMPT="#7aa2f7"   THEME_POINTER="#bb9af7"
-# THEME_MARKER="#9ece6a"   THEME_BORDER="#27a1b9"
-# THEME_HEADER="#e0af68"   THEME_INFO="#73daca"
-# THEME_SPINNER="#f7768e"  THEME_AUTOSUGGEST="fg=#565f89,italic"
-# THEME_POINTER="#7dcfff"
+THEME_NAME="tokyonight_night"
+THEME_BG="#1a1b26"       THEME_BG_SEL="#283457"
+THEME_FG="#c0caf5"       THEME_HL="#7dcfff"
+THEME_PROMPT="#7aa2f7"   THEME_POINTER="#bb9af7"
+THEME_MARKER="#9ece6a"   THEME_BORDER="#27a1b9"
+THEME_HEADER="#e0af68"   THEME_INFO="#73daca"
+THEME_SPINNER="#f7768e"  THEME_AUTOSUGGEST="fg=#565f89,italic"
+THEME_POINTER="#7dcfff"
 
 # catppuccin mocha
 #THEME_NAME="Catppuccin-mocha"
@@ -21,17 +21,17 @@
 #THEME_POINTER="#cba6f7"
 
 # gruvbox-material dark
-THEME_NAME="gruvbox-material"
-THEME_BG="#1d2021"       THEME_BG_SEL="#32302f"
-THEME_FG="#d4be98"       THEME_HL="#89b482"
-THEME_PROMPT="#7daea3"
-THEME_POINTER="#d3869b"
-THEME_MARKER="#a9b665"
-THEME_BORDER="#7c6f64"
-THEME_HEADER="#e78a4e"
-THEME_INFO="#89b482"
-THEME_SPINNER="#ea6962"
-THEME_AUTOSUGGEST="fg=#7c6f64,italic"
+# THEME_NAME="gruvbox-material"
+# THEME_BG="#1d2021"       THEME_BG_SEL="#32302f"
+# THEME_FG="#d4be98"       THEME_HL="#89b482"
+# THEME_PROMPT="#7daea3"
+# THEME_POINTER="#d3869b"
+# THEME_MARKER="#a9b665"
+# THEME_BORDER="#7c6f64"
+# THEME_HEADER="#e78a4e"
+# THEME_INFO="#89b482"
+# THEME_SPINNER="#ea6962"
+# THEME_AUTOSUGGEST="fg=#7c6f64,italic"
 
 # ZINIT
 
