@@ -23,6 +23,7 @@ exec_always /usr/sbin/wl-paste -t text --watch sh -c 'clipman store'
 exec_always /usr/sbin/wl-paste --primary -t text --watch sh -c 'clipman store'
 
 font pango:JetBrainsMono NF 11
+seat seat0 xcursor_theme Adwaita 24
 
 # wallpaper
 output * bg /home/chrnio/Pictures/Wallpapers/farm.png fill
@@ -184,7 +185,8 @@ bindsym $mod+Shift+d exec discord
 bindsym $mod+Shift+w exec brave --app="https://web.whatsapp.com"
 
 # screenshot
-bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
+# bindsym Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
+bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
 bindsym Shift+Print exec grim ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
 bindsym $mod+Shift+c exec grim -g "$(slurp)" - | wl-copy
 
