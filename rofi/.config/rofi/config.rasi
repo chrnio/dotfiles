@@ -1,0 +1,17 @@
+@theme "Arc-Dark"
+configuration {
+    font: "JetBrainsMono NF Medium 11";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+
+    modi: "drun,run,window";
+
+    display-drun: "Apps";
+    display-run: "Run";
+    display-window: "Windows";
+}
+
+window {
+    border: 2px;
+    border-color: #7aa2f7;
+}
