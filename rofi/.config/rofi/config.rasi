@@ -1,6 +1,6 @@
 @theme "Arc-Dark"
 configuration {
-    font: "MapleMono Normal NF Medium 11";
+    font: "JetBrainsMono NF Medium 11";
     show-icons: true;
     icon-theme: "Papirus-Dark";
 
