@@ -9,6 +9,8 @@ set $term foot
 set $menu rofi -show drun
 set $browser firefox
 set $file_manager "foot -e yazi"
+set $bluetooth_man "foot -e bluetui"
+set $sys_monitor "foot -e btop"
 set $alt_file_manager nautilus
 
 exec mako
@@ -22,7 +24,7 @@ font pango:MapleMono Normal NF 11
 seat seat0 xcursor_theme Adwaita 24
 
 # wallpaper
-output * bg /home/chrnio/Pictures/Wallpapers/pixel-sky.png fill
+output * bg /home/chrnio/Pictures/Wallpapers/pixel-castle.png  fill
 
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
@@ -38,11 +40,15 @@ input type:touchpad {
     click_method clickfinger
 }
 
+input type:keyboard {
+    repeat_rate 35
+    repeat_delay 200
+}
+
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
-bindsym $mod+Shift+m exec clipman pick --tool=fuzzel
 floating_modifier $mod normal
 bindsym $mod+Shift+r reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -174,6 +180,10 @@ bindsym $mod+Shift+o exec obsidian
 bindsym $mod+z exec zed
 bindsym $mod+slash exec proton-pass
 bindsym $mod+Shift+d exec discord
+bindsym $mod+Shift+v exec pavucontrol
+bindsym $mod+Shift+m exec $sys_monitor
+bindsym $mod+Shift+x exec $bluetooth_man
+
 
 # web apps
 bindsym $mod+Shift+w exec brave --app="https://web.whatsapp.com"
