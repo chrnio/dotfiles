@@ -20,7 +20,7 @@ exec_always pkill -f "wl-paste.*clipman"
 exec_always /usr/sbin/wl-paste -t text --watch sh -c 'clipman store'
 exec_always /usr/sbin/wl-paste --primary -t text --watch sh -c 'clipman store'
 
-font pango:MapleMono Normal NF 11
+font pango:JetBrainsMono NF Medium 10
 seat seat0 xcursor_theme Adwaita 24
 
 # wallpaper
