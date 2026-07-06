@@ -180,6 +180,7 @@ bindsym $mod+Shift+o exec obsidian
 bindsym $mod+z exec zed
 bindsym $mod+slash exec proton-pass
 bindsym $mod+Shift+d exec discord
+bindsym $mod+Shift+T exec gnome-clocks
 bindsym $mod+Shift+v exec pavucontrol
 bindsym $mod+Shift+m exec $sys_monitor
 bindsym $mod+Shift+x exec $bluetooth_man
