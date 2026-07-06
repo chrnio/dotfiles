@@ -4,7 +4,7 @@
 
 ;; font
 (setq doom-font
-      (font-spec :family "Maple Mono Normal" :size 14 :weight 'medium))
+      (font-spec :family "Maple Mono Normal NF" :size 14 :weight 'medium))
 
 (setq doom-variable-pitch-font
       (font-spec :family "Adwaita Sans" :size 16))
