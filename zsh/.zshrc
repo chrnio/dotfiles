@@ -236,7 +236,7 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 alias ls='eza --icons=always --group-directories-first --color=always -l --git --git-repos'
 alias lsa='eza --icons=always --group-directories-first --color=always -la --git --git-repos'
 
-alias v='nvim'
+alias vim='nvim'
 alias lg='lazygit'
 alias tmux='tmux -u'
 alias cat='bat --paging=never'
