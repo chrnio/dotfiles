@@ -15,7 +15,7 @@ set $alt_file_manager nautilus
 
 exec mako
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id gnome-keyring-daemon --start --components=secrets
+#exec --no-startup-id gnome-keyring-daemon --start --components=secrets
 
 font pango:JetBrainsMono NF Medium 11
 seat seat0 xcursor_theme Adwaita 24
