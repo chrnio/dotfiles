@@ -21,7 +21,7 @@ font pango:JetBrainsMono NF Medium 11
 seat seat0 xcursor_theme Adwaita 24
 
 # wallpaper
-output * bg /home/chrnio/Pictures/Wallpapers/pixel-castle.png  fill
+output * bg /home/chrnio/Pictures/walls/pixel-castle.png  fill
 
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
@@ -187,8 +187,8 @@ bindsym $mod+Shift+x exec $bluetooth_man
 bindsym $mod+Shift+w exec brave --app="https://web.whatsapp.com"
 
 # screenshot
-bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
-bindsym Shift+Print exec grim ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
+bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Pictures/screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
+bindsym Shift+Print exec grim ~/Pictures/screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
 bindsym $mod+Shift+c exec grim -g "$(slurp)" - | wl-copy
 
 include /etc/sway/config.d/*
