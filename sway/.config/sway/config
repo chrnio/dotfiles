@@ -15,12 +15,13 @@ set $alt_file_manager nautilus
 
 exec mako
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id gnome-keyring-daemon --start --components=secrets
 
 exec_always pkill -f "wl-paste.*clipman"
 exec_always /usr/sbin/wl-paste -t text --watch sh -c 'clipman store'
 exec_always /usr/sbin/wl-paste --primary -t text --watch sh -c 'clipman store'
 
-font pango:JetBrainsMono NF Medium 10
+font pango:JetBrainsMono NF Medium 11
 seat seat0 xcursor_theme Adwaita 24
 
 # wallpaper
