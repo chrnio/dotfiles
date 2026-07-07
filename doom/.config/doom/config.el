@@ -4,18 +4,18 @@
 
 ;; font
 (setq doom-font
-      (font-spec :family "Maple Mono Normal NF" :size 14 :weight 'medium))
+      (font-spec :family "JetBrainsMono NF" :size 14 :weight 'medium))
 
 (setq doom-variable-pitch-font
       (font-spec :family "Adwaita Sans" :size 16))
 
 ;; theme
-(setq doom-theme 'doom-one)
-;;(setq catppuccin-flavor 'mocha)
+(setq doom-theme 'catppuccin)
+(setq catppuccin-flavor 'mocha)
 
 ;; opacity
-(set-frame-parameter nil 'alpha-background 80)
-(add-to-list 'default-frame-alist '(alpha-background . 80))
+(set-frame-parameter nil 'alpha-background 85)
+(add-to-list 'default-frame-alist '(alpha-background . 85))
 
 ;; line numbers
 (setq display-line-numbers-type 'relative)
