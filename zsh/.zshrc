@@ -1,24 +1,24 @@
-# THEME 
+# THEME
 
 # tokyonight night
-THEME_NAME="tokyonight_night"
-THEME_BG="#1a1b26"       THEME_BG_SEL="#283457"
-THEME_FG="#c0caf5"       THEME_HL="#7dcfff"
-THEME_PROMPT="#7aa2f7"   THEME_POINTER="#bb9af7"
-THEME_MARKER="#9ece6a"   THEME_BORDER="#27a1b9"
-THEME_HEADER="#e0af68"   THEME_INFO="#73daca"
-THEME_SPINNER="#f7768e"  THEME_AUTOSUGGEST="fg=#565f89,italic"
-THEME_POINTER="#7dcfff"
+# THEME_NAME="tokyonight_night"
+# THEME_BG="#1a1b26"       THEME_BG_SEL="#283457"
+# THEME_FG="#c0caf5"       THEME_HL="#7dcfff"
+# THEME_PROMPT="#7aa2f7"   THEME_POINTER="#bb9af7"
+# THEME_MARKER="#9ece6a"   THEME_BORDER="#27a1b9"
+# THEME_HEADER="#e0af68"   THEME_INFO="#73daca"
+# THEME_SPINNER="#f7768e"  THEME_AUTOSUGGEST="fg=#565f89,italic"
+# THEME_POINTER="#7dcfff"
 
 # catppuccin mocha
-#THEME_NAME="Catppuccin-mocha"
-#THEME_BG="#1e1e2e"       THEME_BG_SEL="#313244"
-#THEME_FG="#cdd6f4"       THEME_HL="#89dceb"
-#THEME_PROMPT="#89b4fa"   THEME_POINTER="#cba6f7"
-#THEME_MARKER="#a6e3a1"   THEME_BORDER="#6c7086"
-#THEME_HEADER="#fab387"   THEME_INFO="#94e2d5"
-#THEME_SPINNER="#f38ba8"  THEME_AUTOSUGGEST="fg=#585b70,italic"
-#THEME_POINTER="#cba6f7"
+THEME_NAME="Catppuccin-mocha"
+THEME_BG="#1e1e2e"       THEME_BG_SEL="#313244"
+THEME_FG="#cdd6f4"       THEME_HL="#89dceb"
+THEME_PROMPT="#89b4fa"   THEME_POINTER="#cba6f7"
+THEME_MARKER="#a6e3a1"   THEME_BORDER="#6c7086"
+THEME_HEADER="#fab387"   THEME_INFO="#94e2d5"
+THEME_SPINNER="#f38ba8"  THEME_AUTOSUGGEST="fg=#585b70,italic"
+THEME_POINTER="#cba6f7"
 
 # gruvbox-material dark
 # THEME_NAME="gruvbox-material"
@@ -76,7 +76,7 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/compcache"
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=34=0'
 zstyle ':completion:*:*:*:*:processes'   command "ps -u $USER -o pid,user,comm -w"
 
-# FZF-TAB 
+# FZF-TAB
 # isolated from FZF_DEFAULT_OPTS to prevent border conflicts
 
 zstyle ':fzf-tab:*' use-fzf-default-opts no
