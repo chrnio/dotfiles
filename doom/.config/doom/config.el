@@ -13,6 +13,10 @@
 (setq doom-theme 'doom-one)
 ;;(setq catppuccin-flavor 'mocha)
 
+;; opacity
+(set-frame-parameter nil 'alpha-background 80)
+(add-to-list 'default-frame-alist '(alpha-background . 80))
+
 ;; line numbers
 (setq display-line-numbers-type 'relative)
 
