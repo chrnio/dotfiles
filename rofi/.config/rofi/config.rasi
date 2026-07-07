@@ -2,7 +2,7 @@ configuration {
     modi: "drun,run,window";
     show-icons: true;
     icon-theme: "Papirus-Dark";
-    font: "JetBrainsMono Nerd Font Medium 11";
+    font: "JetBrainsMono NF Medium 12";
 
     display-drun: "drun";
     display-run: "run";
