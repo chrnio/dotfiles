@@ -1,17 +1,12 @@
-@theme "Arc-Dark"
 configuration {
-    font: "JetBrainsMono NF Medium 11";
+    modi: "drun,run,window";
     show-icons: true;
     icon-theme: "Papirus-Dark";
+    font: "JetBrainsMono Nerd Font Medium 11";
 
-    modi: "drun,run,window";
-
-    display-drun: "Apps";
-    display-run: "Run";
-    display-window: "Windows";
+    display-drun: "drun";
+    display-run: "run";
+    display-window: "window";
 }
 
-window {
-    border: 2px;
-    border-color: #7aa2f7;
-}
+@theme "themes/mocha"
