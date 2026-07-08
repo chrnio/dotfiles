@@ -1,5 +1,5 @@
 * {
-    bg:          #1e1e2e;
+    bg:          #1e1e2e80;
     bg-alt:      #181825;
     fg:          #cdd6f4;
     fg-muted:    #7f849c;
@@ -13,8 +13,7 @@ window {
     border: 3px;
     border-color: @border;
     
-    background-color: @bg;
-    padding: 10px;
+    background-color: @bg; padding: 10px;
 }
 
 mainbox {
