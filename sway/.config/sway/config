@@ -8,7 +8,7 @@ set $up k
 set $right l
 
 set $term foot
-set $menu wmenu-run
+set $menu rofi -show drun
 set $browser firefox
 set $terminalFileManager "foot -e yazi"
 set $graphicalFileManager nautilus
@@ -40,7 +40,7 @@ input type:keyboard {
     bindsym $mod+Shift+b exec $browser
     bindsym $mod+Shift+v exec pavucontrol
     bindsym $mod+Shift+f exec $terminalFileManager
-    bindsym $mod+n exec $fileManager
+    bindsym $mod+n exec $graphicalFileManager
     bindsym $mod+Shift+x exec $bluetoothManager
     bindsym $mod+Shift+w exec brave --app="https://web.whatsapp.com"
 
