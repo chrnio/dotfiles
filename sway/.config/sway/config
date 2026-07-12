@@ -1,34 +1,26 @@
 set $mod Mod4
+
+font pango:JetBrainsMono NF Medium 10
+
 set $left h
 set $down j
 set $up k
 set $right l
 
-# defaults
 set $term foot
-set $menu rofi -show drun
+set $menu wmenu-run
 set $browser firefox
-set $file_manager "foot -e yazi"
-set $bluetooth_man "foot -e bluetui"
-set $sys_monitor "foot -e btop"
-set $alt_file_manager nautilus
+set $terminalFileManager "foot -e yazi"
+set $graphicalFileManager nautilus
+set $bluetoothManager "foot -e bluetui"
 
 exec mako
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id gnome-keyring-daemon --start --components=secrets
-
-font pango:JetBrainsMono NF Medium 11
-seat seat0 xcursor_theme Adwaita 24
+exec --no-startup-id gnome-keyring-daemon --start --components=secrets
 
 # wallpaper
-output * bg /home/chrnio/Pictures/walls/pixel-castle.png  fill
+output * bg /home/chrnio/Pictures/walls/farm.png fill
 
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
-
-# input
 input type:touchpad {
     tap enabled
     tap_button_map lrm
@@ -38,88 +30,98 @@ input type:touchpad {
 }
 
 input type:keyboard {
-    repeat_rate 35
+    repeat_rate 60
     repeat_delay 200
 }
 
+    bindsym $mod+Return exec $term
+    bindsym $mod+Shift+q kill
+    bindsym $mod+d exec $menu
+    bindsym $mod+Shift+b exec $browser
+    bindsym $mod+Shift+v exec pavucontrol
+    bindsym $mod+Shift+f exec $terminalFileManager
+    bindsym $mod+n exec $fileManager
+    bindsym $mod+Shift+x exec $bluetoothManager
+    bindsym $mod+Shift+w exec brave --app="https://web.whatsapp.com"
 
-bindsym $mod+Return exec $term
-bindsym $mod+Shift+q kill
-bindsym $mod+d exec $menu
-floating_modifier $mod normal
-bindsym $mod+Shift+r reload
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    floating_modifier $mod normal
+    bindsym $mod+Shift+r reload
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-# focus
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
+# Moving around:
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
 
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
 
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-# Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# Workspaces:
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
 
-# workspaces
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5
-bindsym $mod+6 workspace number 6
-bindsym $mod+7 workspace number 7
-bindsym $mod+8 workspace number 8
-bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 10
+# Layout stuff:
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
 
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
-bindsym $mod+Shift+6 move container to workspace number 6
-bindsym $mod+Shift+7 move container to workspace number 7
-bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
 
-# split
-bindsym $mod+b splith
-bindsym $mod+v splitv
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
 
-# layout styles
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
 
-bindsym $mod+f fullscreen
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
 
-bindsym $mod+Shift+space floating toggle
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
 
-bindsym $mod+space focus mode_toggle
+# Scratchpad:
+    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+minus scratchpad show
 
-bindsym $mod+a focus parent
-
-# scratchpad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
-
+# Resizing containers:
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
@@ -137,54 +139,46 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Special keys to adjust volume via PulseAudio
-bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+# Utilities:
+    # Special keys to adjust volume via PulseAudio
+    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
 
-# Special keys to control media via playerctl
-bindsym --locked XF86AudioPlay exec playerctl play-pause
-bindsym --locked XF86AudioPause exec playerctl play-pause
-bindsym --locked XF86AudioPrev exec playerctl previous
-bindsym --locked XF86AudioNext exec playerctl next
-bindsym --locked XF86AudioStop exec playerctl stop
+    # Special keys to control media via playerctl
+    bindsym --locked XF86AudioPlay exec playerctl play-pause
+    bindsym --locked XF86AudioPause exec playerctl play-pause
+    bindsym --locked XF86AudioPrev exec playerctl previous
+    bindsym --locked XF86AudioNext exec playerctl next
+    bindsym --locked XF86AudioStop exec playerctl stop
 
-# Special keys to adjust brightness via brightnessctl
-bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    # Special keys to adjust brightness via brightnessctl
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
+    # Special key to take a screenshot with grim
+    bindsym Print exec grim
+
+# swaybar
 bar {
-    position top
-    status_command ~/.config/sway/status.sh
+    position bottom
+    status_command i3status
 
     colors {
         statusline #ffffff
         background #000000
-        inactive_workspace #32323200 #32323200 #5c5c5c
+
+        focused_workspace   #4c7899 #285577 #ffffff
+        active_workspace    #333333 #5f676a #ffffff
+        inactive_workspace  #323232 #323232 #888888
+        urgent_workspace    #900000 #900000 #ffffff
     }
 }
+
 # borders
 default_border pixel 3
 default_floating_border pixel 2
-
-# apps
-bindsym $mod+Shift+b exec $browser
-bindsym $mod+Shift+Return exec emacs
-bindsym $mod+n exec $alt_file_manager
-bindsym $mod+Shift+f exec $file_manager
-bindsym $mod+Shift+o exec obsidian
-bindsym $mod+z exec zed
-bindsym $mod+slash exec proton-pass
-bindsym $mod+Shift+d exec discord
-bindsym $mod+Shift+T exec gnome-clocks
-bindsym $mod+Shift+v exec pavucontrol
-bindsym $mod+Shift+m exec $sys_monitor
-bindsym $mod+Shift+x exec $bluetooth_man
-
-
-# web apps
-bindsym $mod+Shift+w exec brave --app="https://web.whatsapp.com"
 
 # screenshot
 bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Pictures/screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
