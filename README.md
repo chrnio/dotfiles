@@ -5,7 +5,9 @@ chrn@archbox:~$ fetch
 
 os        arch linux
 wm        sway
-editor    emacs
+editor    zed
 shell     zsh
-terminal  kitty
+terminal  foot
 ```
+
+<img src="assets/setup.png" alt="My setup" width="700">
