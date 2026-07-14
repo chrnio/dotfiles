@@ -1,7 +1,7 @@
 configuration {
     modi: "drun,run,window";
     show-icons: true;
-    font: "JetBrainsMono NF Medium 11";
+    font: "CaskaydiaCove Nerd Font 11";
 }
 
 * {
