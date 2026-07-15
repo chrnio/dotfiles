@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:CaskaydiaCove Nerd Font 10
+font pango:JetBrainsMono NF Medium 10
 
 set $left h
 set $down j
@@ -17,9 +17,16 @@ set $menu rofi -show drun
 #         -terminal '$term'
 # set $menu $rofi_cmd -show combi -combi-modes drun
 
-exec dunst
+exec mako
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id gnome-keyring-daemon --start --components=secrets
+
+exec swayidle -w \
+    timeout 300 'swaylock -f' \
+    timeout 330 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    timeout 600 'systemctl suspend' \
+    before-sleep 'swaylock -f'
 
 # wallpaper
 output * bg /home/chrnio/Pictures/walls/legit-moon.png fill
@@ -49,6 +56,7 @@ input type:keyboard {
 
     floating_modifier $mod normal
     bindsym $mod+Shift+r reload
+    bindsym $mod+Escape exec swaylock -f -i /home/chrnio/Pictures/walls/legit-moon.png
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Moving around:
