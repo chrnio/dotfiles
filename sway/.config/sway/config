@@ -30,7 +30,7 @@ exec swayidle -w \
     before-sleep 'swaylock -f'
 
 # wallpaper
-output * bg /home/chrnio/Pictures/walls/legit-moon.png fill
+output * bg /home/chrnio/Pictures/walls/pixel-castle.png fill
 
 input type:touchpad {
     tap enabled
@@ -173,7 +173,7 @@ bindsym $mod+r mode "resize"
 # swaybar
 bar {
     position bottom
-    status_command i3status-rs
+    status_command i3status
 
     colors {
         statusline #ffffff
