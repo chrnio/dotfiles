@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:JetBrainsMono NF Medium 10
+font pango:JetBrainsMono NF Medium 11
 
 set $left h
 set $down j
@@ -20,6 +20,7 @@ set $menu rofi -show drun
 exec mako
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id gnome-keyring-daemon --start --components=secrets
+exec --no-startup-id nm-applet 
 
 exec swayidle -w \
     timeout 300 'swaylock -f' \
@@ -52,7 +53,8 @@ input type:keyboard {
     bindsym $mod+Shift+f exec $terminalFileManager
     bindsym $mod+n exec $graphicalFileManager
     bindsym $mod+Shift+x exec $bluetoothManager
-    bindsym $mod+Shift+w exec brave --app="https://web.whatsapp.com"
+    bindsym $mod+Shift+n exec nm-connection-editor
+    bindsym $mod+Shift+w exec brave-origin --app="https://web.whatsapp.com"
 
     floating_modifier $mod normal
     bindsym $mod+Shift+r reload
