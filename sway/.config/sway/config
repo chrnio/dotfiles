@@ -173,7 +173,7 @@ bindsym $mod+r mode "resize"
 # swaybar
 bar {
     position bottom
-    status_command i3status
+    status_command i3status-rs
 
     colors {
         statusline #ffffff
