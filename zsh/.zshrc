@@ -47,7 +47,6 @@ autoload -Uz _zinit
 zinit ice wait lucid blockf
 zinit light zsh-users/zsh-completions
 
-# fzf-tab must load before syntax-highlighting
 zinit ice wait lucid
 zinit light Aloxaf/fzf-tab
 
@@ -57,11 +56,8 @@ zinit light zsh-users/zsh-autosuggestions
 zinit ice wait lucid
 zinit light hlissner/zsh-autopair
 
-zinit ice wait lucid
-zinit light MichaelAquilina/zsh-you-should-use
-
 zinit ice wait lucid atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay'
-zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light MichaelAquilina/zsh-you-should-use
 
 # COMPLETION
 
@@ -100,9 +96,9 @@ zstyle ':fzf-tab:*' fzf-flags \
     "--color=spinner:$THEME_SPINNER"
 
 zstyle ':fzf-tab:complete:*' fzf-preview \
-    'if [[ -d $realpath ]]; then eza --icons --tree --level=2 --color=always $realpath 2>/dev/null; elif [[ -f $realpath ]]; then bat --color=always --line-range :60 $realpath 2>/dev/null; fi'
+    'if [[ -d $realpath ]]; then ls -la --color=always $realpath 2>/dev/null; elif [[ -f $realpath ]]; then bat --color=always --line-range :60 $realpath 2>/dev/null; fi'
 zstyle ':fzf-tab:complete:(cd|z|zi|zoxide):*' fzf-preview \
-    'eza --icons --tree --level=2 --color=always $realpath 2>/dev/null'
+    'ls -la --color=always $realpath 2>/dev/null'
 zstyle ':fzf-tab:complete:(nvim|v|vi|vim|bat|cat):*' fzf-preview \
     'bat --color=always --line-range :60 $realpath 2>/dev/null'
 zstyle ':fzf-tab:complete:kill:argument-rest' fzf-preview \
@@ -206,7 +202,7 @@ export FZF_DEFAULT_OPTS="
 "
 
 export FZF_CTRL_T_OPTS="--preview='bat --color=always --line-range :80 {}' --preview-window='right:55%:wrap'"
-export FZF_ALT_C_OPTS="--preview='eza --icons --tree --level=2 --color=always {}'"
+export FZF_ALT_C_OPTS="--preview='ls -la --color=always {}'"
 export FZF_CTRL_R_OPTS="
   --preview='echo {}' --preview-window='down:3:hidden:wrap'
   --bind='ctrl-/:toggle-preview'
@@ -232,9 +228,6 @@ alias ....='cd ../../..'
 alias -- -='cd -'
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
-
-alias ls='eza --icons=always --group-directories-first --color=always -l --git --git-repos'
-alias lsa='eza --icons=always --group-directories-first --color=always -la --git --git-repos'
 
 alias vim='nvim'
 alias lg='lazygit'
@@ -351,7 +344,7 @@ function y() {
 function fcd() {
     local dir
     dir=$(fd --type d --hidden --follow --exclude .git . "${1:-$HOME}" | \
-          fzf --preview 'eza --icons --tree --level=2 --color=always {}') \
+          fzf --preview 'ls -la --color=always {}') \
     && cd "$dir"
 }
 
