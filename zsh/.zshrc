@@ -229,7 +229,11 @@ alias -- -='cd -'
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
+alias ls='ls --color=auto'
+alias lsa='ls -lah --color=auto'
+
 alias vim='nvim'
+alias hx='helix'
 alias lg='lazygit'
 alias tmux='tmux -u'
 alias cat='bat --paging=never'
