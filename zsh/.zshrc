@@ -1,5 +1,14 @@
 # THEME
 
+# adwaita mono
+THEME_NAME="Adwaita-Mono"
+THEME_BG="#222226"       THEME_BG_SEL="#3d3846"
+THEME_FG="#ffffff"       THEME_HL="#deddda"
+THEME_PROMPT="#c0bfbc"   THEME_POINTER="#ffffff"
+THEME_MARKER="#9a9996"   THEME_BORDER="#5e5c64"
+THEME_HEADER="#ffffff"   THEME_INFO="#9a9996"
+THEME_SPINNER="#c0bfbc"  THEME_AUTOSUGGEST="fg=#77767b,italic"
+
 # tokyonight night
 # THEME_NAME="tokyonight_night"
 # THEME_BG="#1a1b26"       THEME_BG_SEL="#283457"
@@ -11,14 +20,14 @@
 # THEME_POINTER="#7dcfff"
 
 # catppuccin mocha
-THEME_NAME="Catppuccin-mocha"
-THEME_BG="#1e1e2e"       THEME_BG_SEL="#313244"
-THEME_FG="#cdd6f4"       THEME_HL="#89dceb"
-THEME_PROMPT="#89b4fa"   THEME_POINTER="#cba6f7"
-THEME_MARKER="#a6e3a1"   THEME_BORDER="#6c7086"
-THEME_HEADER="#fab387"   THEME_INFO="#94e2d5"
-THEME_SPINNER="#f38ba8"  THEME_AUTOSUGGEST="fg=#585b70,italic"
-THEME_POINTER="#cba6f7"
+# THEME_NAME="Catppuccin-mocha"
+# THEME_BG="#1e1e2e"       THEME_BG_SEL="#313244"
+# THEME_FG="#cdd6f4"       THEME_HL="#89dceb"
+# THEME_PROMPT="#89b4fa"   THEME_POINTER="#cba6f7"
+# THEME_MARKER="#a6e3a1"   THEME_BORDER="#6c7086"
+# THEME_HEADER="#fab387"   THEME_INFO="#94e2d5"
+# THEME_SPINNER="#f38ba8"  THEME_AUTOSUGGEST="fg=#585b70,italic"
+# THEME_POINTER="#cba6f7"
 
 # gruvbox-material dark
 # THEME_NAME="gruvbox-material"
@@ -99,7 +108,7 @@ zstyle ':fzf-tab:complete:*' fzf-preview \
     'if [[ -d $realpath ]]; then ls -la --color=always $realpath 2>/dev/null; elif [[ -f $realpath ]]; then bat --color=always --line-range :60 $realpath 2>/dev/null; fi'
 zstyle ':fzf-tab:complete:(cd|z|zi|zoxide):*' fzf-preview \
     'ls -la --color=always $realpath 2>/dev/null'
-zstyle ':fzf-tab:complete:(nvim|v|vi|vim|bat|cat):*' fzf-preview \
+zstyle ':fzf-tab:complete:(hx|nvim|v|vi|vim|bat|cat):*' fzf-preview \
     'bat --color=always --line-range :60 $realpath 2>/dev/null'
 zstyle ':fzf-tab:complete:kill:argument-rest' fzf-preview \
     'ps --pid=$word -o cmd --no-header -w 2>/dev/null'
@@ -112,7 +121,7 @@ zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
         "modified file") git diff $word 2>/dev/null | bat -l diff --color=always ;;
         "recent commit object name") git show --color=always $word 2>/dev/null | bat --color=always ;;
         *) git log --oneline --color=always $word 2>/dev/null ;;
-     esac'
+    esac'
 zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview \
     'SYSTEMD_COLORS=1 systemctl status $word 2>/dev/null | bat --color=always -l ini'
 
@@ -130,6 +139,7 @@ SAVEHIST=200000
 setopt HIST_EXPIRE_DUPS_FIRST HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS HIST_IGNORE_SPACE HIST_VERIFY
 setopt SHARE_HISTORY INC_APPEND_HISTORY
+
 # ENVIRONMENT
 
 export QT_QPA_PLATFORM=wayland
@@ -137,8 +147,8 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 export QT_STYLE_OVERRIDE=Fusion
 export QT_QUICK_CONTROLS_STYLE=Fusion
 
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="hx"
+export VISUAL="hx"
 export PAGER="bat --paging=always"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
@@ -232,7 +242,7 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 alias ls='ls --color=auto'
 alias lsa='ls -lah --color=auto'
 
-alias vim='nvim'
+# alias vim='nvim'
 alias hx='helix'
 alias lg='lazygit'
 alias tmux='tmux -u'
@@ -316,20 +326,20 @@ alias gob='go build .'
 alias got='go test ./...'
 alias gom='go mod tidy'
 
-alias zrc='nvim ~/.zshrc'
+alias zrc='hx ~/.zshrc'
 alias szrc='source ~/.zshrc'
 alias ff='fastfetch'
-alias hylua='nvim ~/.config/hypr/hyprland.lua'
-alias hymod='nvim ~/.config/hypr/modules/'
-alias swayconf='nvim ~/.config/sway/config'
-alias kconf='nvim ~/.config/kitty/kitty.conf'
-alias aconf='nvim ~/.config/alacritty/alacritty.toml'
-alias footconf='nvim ~/.config/foot/foot.ini'
-alias ncf='nvim ~/Projects/nixconf/configuration.nix'
-alias zelconf='nvim ~/.config/zellij/config.kdl'
+alias hylua='hx ~/.config/hypr/hyprland.lua'
+alias hymod='hx ~/.config/hypr/modules/'
+alias swayconf='hx ~/.config/sway/config'
+alias kconf='hx ~/.config/kitty/kitty.conf'
+alias aconf='hx ~/.config/alacritty/alacritty.toml'
+alias footconf='hx ~/.config/foot/foot.ini'
+alias ncf='hx ~/Projects/nixconf/configuration.nix'
+alias zelconf='hx ~/.config/zellij/config.kdl'
 alias fdfont='fc-list | grep'
-alias nrc='nvim ~/.config/nvim/'
-alias src='nvim ~/.config/starship.toml'
+alias nrc='hx ~/.config/nvim/'
+alias src='hx ~/.config/starship.toml'
 alias bt='bluetui'
 alias torr='transmission-cli -w ~/Downloads/torrents -f'
 
@@ -357,7 +367,7 @@ function fv() {
     files=$(fzf --multi \
         --preview 'bat --color=always --line-range :80 {}' \
         --preview-window 'right:55%:wrap') \
-    && nvim $files
+    && hx $files
 }
 
 function frg() {
@@ -369,7 +379,7 @@ function frg() {
     [[ -z "$result" ]] && return
     file=$(echo "$result" | cut -d: -f1)
     line=$(echo "$result" | cut -d: -f2)
-    nvim "+$line" "$file"
+    hx "$file":"$line"
 }
 
 function gfco() {
@@ -393,7 +403,7 @@ function ts() {
     session=$(tmux list-sessions -F '#{session_name}' 2>/dev/null | \
               fzf --prompt='session  ' \
                   --header='Ctrl-N: new session' \
-                  --bind "ctrl-n:execute(tmux new-session -ds {q} 2>/dev/null)+reload(tmux list-sessions -F '#{session_name}')") \
+                  --bind "ctrl-n:execute(tmux new-session -ds {q} 2>/dev/null)+reload(tmux list-sessions -F '#{session_name}')" ) \
     && (tmux switch-client -t "$session" 2>/dev/null || tmux attach -t "$session")
 }
 
@@ -407,18 +417,18 @@ function ex() {
         *.tar.zst)        tar --zstd -xf "$1" ;;
         *.tar)            tar xf "$1"          ;;
         *.bz2)            bunzip2 "$1"         ;;
-        *.gz)             gunzip "$1"          ;;
+        *.gz)             gunzip "$1"         ;;
         *.zip)            unzip "$1"           ;;
-        *.7z)             7z x "$1"            ;;
-        *.rar)            unrar x "$1"         ;;
-        *.zst)            zstd -d "$1"         ;;
+        *.7z)              7z x "$1"           ;;
+        *.rar)             unrar x "$1"         ;;
+        *.zst)             zstd -d "$1"         ;;
         *)                echo "unknown: $1"   ;;
     esac
 }
 
 function note() {
     mkdir -p "$HOME/notes"
-    nvim "$HOME/notes/${1:-$(date +%Y-%m-%d)}.md"
+    hx "$HOME/notes/${1:-$(date +%Y-%m-%d)}.md"
 }
 
 function serve() { python3 -m http.server "${1:-8000}"; }
