@@ -334,13 +334,7 @@ alias hymod='hx ~/.config/hypr/modules/'
 alias swayconf='hx ~/.config/sway/config'
 alias kconf='hx ~/.config/kitty/kitty.conf'
 alias aconf='hx ~/.config/alacritty/alacritty.toml'
-alias footconf='hx ~/.config/foot/foot.ini'
 alias ncf='hx ~/Projects/nixconf/configuration.nix'
-alias zelconf='hx ~/.config/zellij/config.kdl'
-alias fdfont='fc-list | grep'
-alias nrc='hx ~/.config/nvim/'
-alias src='hx ~/.config/starship.toml'
-alias bt='bluetui'
 alias torr='transmission-cli -w ~/Downloads/torrents -f'
 
 # FUNCTIONS
