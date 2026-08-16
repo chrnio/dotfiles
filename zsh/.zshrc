@@ -1,4 +1,4 @@
-# THEME
+# theme
 THEME_NAME="tokyonight_night"
 THEME_BG="#1a1b26"       THEME_BG_SEL="#283457"
 THEME_FG="#c0caf5"       THEME_HL="#7dcfff"
@@ -32,8 +32,7 @@ zinit light hlissner/zsh-autopair
 zinit ice wait lucid atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay'
 zinit light MichaelAquilina/zsh-you-should-use
 
-# COMPLETION
-
+# completion
 zstyle ':completion:*' menu no
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -45,9 +44,7 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/compcache"
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=34=0'
 zstyle ':completion:*:*:*:*:processes'   command "ps -u $USER -o pid,user,comm -w"
 
-# FZF-TAB
-# isolated from FZF_DEFAULT_OPTS to prevent border conflicts
-
+# fzf-tab, kept separate from FZF_DEFAULT_OPTS so the borders don't clash
 zstyle ':fzf-tab:*' use-fzf-default-opts no
 zstyle ':fzf-tab:*' fzf-flags \
     '--height=50%' \
@@ -72,7 +69,7 @@ zstyle ':fzf-tab:complete:*' fzf-preview \
     'if [[ -d $realpath ]]; then ls -la --color=always $realpath 2>/dev/null; elif [[ -f $realpath ]]; then bat --color=always --line-range :60 $realpath 2>/dev/null; fi'
 zstyle ':fzf-tab:complete:(cd|z|zi|zoxide):*' fzf-preview \
     'ls -la --color=always $realpath 2>/dev/null'
-zstyle ':fzf-tab:complete:(hx|nvim|v|vi|vim|bat|cat):*' fzf-preview \
+zstyle ':fzf-tab:complete:(nvim|v|vi|vim|bat|cat):*' fzf-preview \
     'bat --color=always --line-range :60 $realpath 2>/dev/null'
 zstyle ':fzf-tab:complete:kill:argument-rest' fzf-preview \
     'ps --pid=$word -o cmd --no-header -w 2>/dev/null'
@@ -89,14 +86,12 @@ zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
 zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview \
     'SYSTEMD_COLORS=1 systemctl status $word 2>/dev/null | bat --color=always -l ini'
 
-# SHELL OPTIONS
-
+# shell options
 setopt AUTO_CD CDABLE_VARS AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
 setopt EXTENDED_GLOB GLOB_DOTS NULL_GLOB
 setopt INTERACTIVE_COMMENTS NO_BEEP CORRECT
 
-# HISTORY
-
+# history
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=200000
 SAVEHIST=200000
@@ -104,15 +99,14 @@ setopt HIST_EXPIRE_DUPS_FIRST HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS HIST_IGNORE_SPACE HIST_VERIFY
 setopt SHARE_HISTORY INC_APPEND_HISTORY
 
-# ENVIRONMENT
-
+# environment
 export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt6ct
 export QT_STYLE_OVERRIDE=Fusion
 export QT_QUICK_CONTROLS_STYLE=Fusion
 
-export EDITOR="hx"
-export VISUAL="hx"
+export EDITOR="nvim"
+export VISUAL="neovide"
 export PAGER="bat --paging=always"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
@@ -135,8 +129,7 @@ typeset -U path
 path=("$HOME/.local/bin" "$HOME/go/bin" "$HOME/.cargo/bin" "$PNPM_HOME" /usr/local/bin $path)
 export PATH
 
-# KEY BINDINGS
-
+# key bindings
 bindkey -e
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
@@ -151,8 +144,7 @@ bindkey '^[[3;5~' kill-word
 bindkey '^ '      autosuggest-accept
 bindkey '^[^M'    autosuggest-execute
 
-# FZF
-
+# fzf
 source <(fzf --zsh)
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
@@ -183,19 +175,14 @@ export FZF_CTRL_R_OPTS="
   --header='Ctrl-Y to copy  |  Ctrl-/ to preview'
 "
 
-# ZOXIDE
-
 eval "$(zoxide init zsh --cmd cd)"
-
-# AUTOSUGGESTIONS
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="$THEME_AUTOSUGGEST"
 
-# ALIASES
-
+# aliases
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -203,11 +190,9 @@ alias -- -='cd -'
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
-alias ls='ls --color=auto'
-alias lsa='ls -lah --color=auto'
+alias ls='eza'
+alias lsa='eza -lah'
 
-# alias vim='nvim'
-alias hx='helix'
 alias lg='lazygit'
 alias tmux='tmux -u'
 alias cat='bat --paging=never'
@@ -224,15 +209,7 @@ alias rm='rm -iv'
 alias clip='wl-copy'
 alias paste='wl-paste'
 alias dl='aria2c -x16 -s16 -k1M'
-
-alias psi='paru -S --needed'
-alias psi!='paru -S --needed --noconfirm'
-alias psr='paru -Rns'
-alias psu='paru -Syu'
-alias pss='paru -Ss'
-alias pqi='paru -Qi'
-alias pql='paru -Ql'
-alias orphans='paru -Qtdq | paru -Rns -'
+alias torr='transmission-cli -w ~/Downloads/torrents -f'
 
 alias g='git'
 alias gs='git status -sb'
@@ -255,145 +232,13 @@ alias gstp='git stash pop'
 alias gcp='git cherry-pick'
 alias gbl='git blame -w'
 
-alias py='python'
-alias py3='python3'
-alias venv='uv venv'
-alias uvr='uv run'
-alias uva='source .venv/bin/activate'
-alias uvd='deactivate'
-alias pipi='uv pip install'
-alias pipu='uv pip install --upgrade'
-alias pipl='uv pip list'
-
-alias ni='pnpm install'
-alias na='pnpm add'
-alias nr='pnpm run'
-alias nx='pnpm exec'
-alias nrd='pnpm run dev'
-alias nrb='pnpm run build'
-alias nrt='pnpm run test'
-alias nrl='pnpm run lint'
-alias nrp='pnpm run preview'
-
-alias cb='cargo build'
-alias cbr='cargo build --release'
-alias cr='cargo run'
-alias crr='cargo run --release'
-alias ct='cargo test'
-alias cc='cargo check'
-alias cf='cargo fmt'
-alias ccl='cargo clippy -- -D warnings'
-alias cad='cargo add'
-
-alias gor='go run .'
-alias gob='go build .'
-alias got='go test ./...'
-alias gom='go mod tidy'
-
-alias zrc='hx ~/.zshrc'
+alias zrc='nvim ~/.zshrc'
 alias szrc='source ~/.zshrc'
 alias ff='fastfetch'
-alias hylua='hx ~/.config/hypr/hyprland.lua'
-alias hymod='hx ~/.config/hypr/modules/'
-alias swayconf='hx ~/.config/sway/config'
-alias kconf='hx ~/.config/kitty/kitty.conf'
-alias aconf='hx ~/.config/alacritty/alacritty.toml'
-alias ncf='hx ~/Projects/nixconf/configuration.nix'
-alias torr='transmission-cli -w ~/Downloads/torrents -f'
+alias hylua='nvim ~/.config/hypr/hyprland.lua'
+alias hymod='nvim ~/.config/hypr/modules/'
+alias swayconf='nvim ~/.config/sway/config'
+alias kconf='nvim ~/.config/kitty/kitty.conf'
+alias aconf='nvim ~/.config/alacritty/alacritty.toml'
 
-# FUNCTIONS
-
-function y() {
-    local tmp cwd
-    tmp="$(mktemp -t yazi-cwd.XXXXXX)"
-    yazi "$@" --cwd-file="$tmp"
-    if cwd="$(cat -- "$tmp")" && [[ -n "$cwd" && "$cwd" != "$PWD" ]]; then
-        builtin cd -- "$cwd"
-    fi
-    rm -f -- "$tmp"
-}
-
-function fcd() {
-    local dir
-    dir=$(fd --type d --hidden --follow --exclude .git . "${1:-$HOME}" | \
-          fzf --preview 'ls -la --color=always {}') \
-    && cd "$dir"
-}
-
-function fv() {
-    local files
-    files=$(fzf --multi \
-        --preview 'bat --color=always --line-range :80 {}' \
-        --preview-window 'right:55%:wrap') \
-    && hx $files
-}
-
-function frg() {
-    local result file line
-    result=$(rg --color=always --line-number --no-heading --smart-case "${*:-}" | \
-             fzf --ansi --delimiter ':' \
-                 --preview 'bat --color=always {1} --highlight-line {2}' \
-                 --preview-window 'right:55%,+{2}+3/3,wrap')
-    [[ -z "$result" ]] && return
-    file=$(echo "$result" | cut -d: -f1)
-    line=$(echo "$result" | cut -d: -f2)
-    hx "$file":"$line"
-}
-
-function gfco() {
-    local branch
-    branch=$(git branch -a --color=always | grep -v HEAD | \
-             fzf --ansi \
-                 --preview 'git log --oneline --color=always $(echo {} | sed "s/remotes\/origin\///")' | \
-             sed 's/remotes\/origin\///' | xargs)
-    [[ -n "$branch" ]] && git switch "$branch"
-}
-
-function fkill() {
-    local pid
-    pid=$(ps -u "$USER" -o pid,ppid,%cpu,%mem,comm --no-header | \
-          fzf --multi --header='PID  PPID  %CPU  %MEM  CMD' | awk '{print $1}')
-    [[ -n "$pid" ]] && kill -9 $pid
-}
-
-function ts() {
-    local session
-    session=$(tmux list-sessions -F '#{session_name}' 2>/dev/null | \
-              fzf --prompt='session  ' \
-                  --header='Ctrl-N: new session' \
-                  --bind "ctrl-n:execute(tmux new-session -ds {q} 2>/dev/null)+reload(tmux list-sessions -F '#{session_name}')" ) \
-    && (tmux switch-client -t "$session" 2>/dev/null || tmux attach -t "$session")
-}
-
-function mkcd() { mkdir -p "$1" && cd "$1"; }
-
-function ex() {
-    case "$1" in
-        *.tar.bz2|*.tbz2) tar xjf "$1"        ;;
-        *.tar.gz|*.tgz)   tar xzf "$1"        ;;
-        *.tar.xz|*.txz)   tar xJf "$1"        ;;
-        *.tar.zst)        tar --zstd -xf "$1" ;;
-        *.tar)            tar xf "$1"          ;;
-        *.bz2)            bunzip2 "$1"         ;;
-        *.gz)             gunzip "$1"         ;;
-        *.zip)            unzip "$1"           ;;
-        *.7z)              7z x "$1"           ;;
-        *.rar)             unrar x "$1"         ;;
-        *.zst)             zstd -d "$1"         ;;
-        *)                echo "unknown: $1"   ;;
-    esac
-}
-
-function note() {
-    mkdir -p "$HOME/notes"
-    hx "$HOME/notes/${1:-$(date +%Y-%m-%d)}.md"
-}
-
-function serve() { python3 -m http.server "${1:-8000}"; }
-
-function topcmds() {
-    history 1 | awk '{print $2}' | sort | uniq -c | sort -rn | head 10
-}
-
-# PROMPT
 eval "$(starship init zsh)"
