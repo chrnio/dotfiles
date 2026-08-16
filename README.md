@@ -4,10 +4,8 @@
 chrn@archbox:~$ fetch
 
 os        arch linux
-wm        sway
-editor    zed
+wm        hyprland
+editor    neovide
 shell     zsh
-terminal  foot
+terminal  kitty
 ```
-
-<img src="assets/setup.png" alt="My setup" width="700">
