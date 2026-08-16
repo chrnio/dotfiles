@@ -1,0 +1,3 @@
+[submodule "hyprland-configuration"]
+	path = hyprland-configuration
+	url = git@github.com:chrnio/hyprland-configuration.git
