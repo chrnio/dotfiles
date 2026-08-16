@@ -16,7 +16,7 @@ max_height = 2000
 [opener]
 
 edit = [
-    { run = 'nvim "$@"', block = true }
+    { run = 'neovide "$@"', block = true }
 ]
 
 pdf = [
