@@ -9,3 +9,8 @@ editor    neovide
 shell     zsh
 terminal  kitty
 ```
+
+
+<p align="center">
+  <img src="assets/hyprland-setup.png" alt="Hyprland desktop setup" width="900">
+</p>
