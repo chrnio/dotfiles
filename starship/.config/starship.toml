@@ -1,0 +1,74 @@
+# ~/.config/starship.toml
+#
+# Colors here are named ANSI colors (green, blue, cyan, etc), not hex.
+# Starship resolves these against whatever palette your terminal profile
+# is currently using -- right now that's Konsole's Breeze Dark, but if
+# you switch profiles or colorschemes later, the prompt follows
+# automatically with no edits needed here.
+
+format = """
+$username$hostname $directory$git_branch$git_status$fill$golang$rust$nodejs$python$cmd_duration
+$character"""
+
+[username]
+style_user = "green bold"
+style_root = "red bold"
+format = "[$user]($style)"
+show_always = true
+disabled = false
+
+[hostname]
+ssh_only = false
+format = "[@$hostname]($style) "
+style = "blue bold"
+disabled = false
+
+[directory]
+style = "cyan bold"
+truncation_length = 3
+truncate_to_repo = true
+read_only = " 󰌾"
+read_only_style = "bright-black"
+format = "in [$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+symbol = " "
+style = "yellow bold"
+format = "[on](white) [$symbol$branch]($style) "
+
+[git_status]
+style = "red bold"
+format = "([$all_status$ahead_behind]($style)) "
+
+[fill]
+symbol = " "
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold cyan)"
+
+[golang]
+symbol = " "
+style = "cyan bold"
+format = "[$symbol$version]($style) "
+
+[rust]
+symbol = " "
+style = "yellow bold"
+format = "[$symbol$version]($style) "
+
+[nodejs]
+symbol = " "
+style = "green bold"
+format = "[$symbol$version]($style) "
+
+[python]
+symbol = " "
+style = "cyan bold"
+format = "[$symbol$version]($style) "
+
+[cmd_duration]
+min_time = 2000
+style = "yellow bold"
+format = "took [$duration]($style) "
