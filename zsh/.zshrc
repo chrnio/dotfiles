@@ -1,12 +1,11 @@
-# theme
-THEME_NAME="tokyonight_night"
-THEME_BG="#1a1b26"       THEME_BG_SEL="#283457"
-THEME_FG="#c0caf5"       THEME_HL="#7dcfff"
-THEME_PROMPT="#7aa2f7"   THEME_POINTER="#bb9af7"
-THEME_MARKER="#9ece6a"   THEME_BORDER="#27a1b9"
-THEME_HEADER="#e0af68"   THEME_INFO="#73daca"
-THEME_SPINNER="#f7768e"  THEME_AUTOSUGGEST="fg=#565f89,italic"
-THEME_POINTER="#7dcfff"
+# theme (KDE Breeze Dark -- Konsole's built-in "Breeze" scheme)
+THEME_NAME="breeze_dark"
+THEME_BG="#232627"        THEME_BG_SEL="#31363b"
+THEME_FG="#fcfcfc"        THEME_HL="#1abc9c"
+THEME_PROMPT="#3daee9"    THEME_POINTER="#9b59b6"
+THEME_MARKER="#11d116"    THEME_BORDER="#1d99f3"
+THEME_HEADER="#fdbc4b"    THEME_INFO="#16a085"
+THEME_SPINNER="#ed1515"   THEME_AUTOSUGGEST="fg=#63686d,italic"
 
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
 if [[ ! -d "$ZINIT_HOME" ]]; then
@@ -190,8 +189,9 @@ alias -- -='cd -'
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
-alias ls='eza'
-alias lsa='eza -lah'
+alias ls='eza -lh --icons --group-directories-first'
+alias lsa='eza -lah --icons --group-directories-first --git --time-style=long-iso'
+alias lt='eza --tree --icons --level=2 --group-directories-first'
 
 alias lg='lazygit'
 alias tmux='tmux -u'
@@ -242,3 +242,4 @@ alias kconf='nvim ~/.config/kitty/kitty.conf'
 alias aconf='nvim ~/.config/alacritty/alacritty.toml'
 
 eval "$(starship init zsh)"
+
