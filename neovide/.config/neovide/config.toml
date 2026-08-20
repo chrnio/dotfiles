@@ -1,5 +1,5 @@
 vsync = true 
 
 [font]
-normal = "monospace"
-size = 10
+normal = "IoskeleyMono Nerd Font Mono Medium"
+size = 10.5
