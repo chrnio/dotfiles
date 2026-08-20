@@ -242,4 +242,3 @@ alias kconf='nvim ~/.config/kitty/kitty.conf'
 alias aconf='nvim ~/.config/alacritty/alacritty.toml'
 
 eval "$(starship init zsh)"
-
