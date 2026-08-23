@@ -1,14 +1,14 @@
 set $mod Mod4
 
-font pango:JetBrainsMono NF Medium 11
+font pango:JetBrainsMono NF Medium 9
 
 set $left h
 set $down j
 set $up k
 set $right l
 
-set $term kitty
-set $browser firefox
+set $term foot
+set $browser librewolf
 set $terminalFileManager "kitty -e yazi"
 set $graphicalFileManager nautilus
 set $bluetoothManager "kitty -e bluetui"
