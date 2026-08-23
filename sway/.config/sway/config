@@ -30,7 +30,7 @@ exec swayidle -w \
     before-sleep 'swaylock -f'
 
 # wallpaper
-output * bg /home/chrnio/Pictures/walls/leaves.png fill
+output * bg /home/chrnio/Pictures/walls/sunset.png fill
 
 input type:touchpad {
     tap enabled
@@ -46,14 +46,18 @@ input type:keyboard {
 }
 
     bindsym $mod+Return exec $term
-    bindsym $mod+Shift+q kill
+    bindsym $mod+Shift+Return exec neovide
+        bindsym $mod+Shift+q kill
     bindsym $mod+d exec $menu
     bindsym $mod+Shift+b exec $browser
     bindsym $mod+Shift+v exec pavucontrol
     bindsym $mod+Shift+f exec $terminalFileManager
     bindsym $mod+n exec $graphicalFileManager
     bindsym $mod+Shift+x exec $bluetoothManager
-    bindsym $mod+Shift+n exec nm-connection-editor
+    bindsym $mod+z exec zeditor
+    bindsym $mod+Shift+d exec discord
+    bindsym $mod+m exec spotify-launcher
+
     bindsym $mod+Shift+w exec brave-origin --app="https://web.whatsapp.com"
 
     floating_modifier $mod normal
