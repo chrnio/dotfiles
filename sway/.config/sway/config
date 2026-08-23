@@ -7,7 +7,7 @@ set $down j
 set $up k
 set $right l
 
-set $term foot
+set $term kitty
 set $browser librewolf
 set $terminalFileManager "kitty -e yazi"
 set $graphicalFileManager nautilus
@@ -30,7 +30,7 @@ exec swayidle -w \
     before-sleep 'swaylock -f'
 
 # wallpaper
-output * bg /home/chrnio/Pictures/walls/sunset.png fill
+output * bg /home/chrnio/Pictures/walls/waterfall-02.png fill
 
 input type:touchpad {
     tap enabled
