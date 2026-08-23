@@ -30,7 +30,7 @@ exec swayidle -w \
     before-sleep 'swaylock -f'
 
 # wallpaper
-output * bg /home/chrnio/Pictures/walls/pixel-castle.png fill
+output * bg /home/chrnio/Pictures/walls/leaves.png fill
 
 input type:touchpad {
     tap enabled
