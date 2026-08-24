@@ -1,7 +1,8 @@
 # steal theme from kitty :)
 THEME_BG="$(kitty @ get-colors | awk '$1=="background"{print $2}')"
 THEME_FG="$(kitty @ get-colors | awk '$1=="foreground"{print $2}')"
-THEME_BG_SEL="$(kitty @ get-colors | awk '$1=="selection_background"{print $2}')"
+THEME_BG_SEL="$(kitty @ get-colors | awk '$1=="color8"{print $2}')"
+
 THEME_HL="$(kitty @ get-colors | awk '$1=="color6"{print $2}')"
 THEME_PROMPT="$(kitty @ get-colors | awk '$1=="color4"{print $2}')"
 THEME_POINTER="$(kitty @ get-colors | awk '$1=="color5"{print $2}')"
@@ -44,23 +45,21 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*:warnings'     format '%F{203}  no matches%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/compcache"
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=34=0'
-zstyle ':completion:*:*:*:*:processes'   command "ps -u $USER -o pid,user,comm -w"
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/compcache" zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=34=0' zstyle ':completion:*:*:*:*:processes'   command "ps -u $USER -o pid,user,comm -w"
 
 # fzf-tab, kept separate from FZF_DEFAULT_OPTS so the borders don't clash
 zstyle ':fzf-tab:*' use-fzf-default-opts no
 zstyle ':fzf-tab:*' fzf-flags \
     '--height=50%' \
     '--layout=reverse' \
-    '--border=rounded' \
+    '--border=sharp' \
     '--padding=0,1' \
     '--prompt= ' \
     '--pointer=›' \
     '--marker=◆' \
     "--color=bg:$THEME_BG,bg+:$THEME_BG_SEL" \
     "--color=fg:$THEME_FG,fg+:$THEME_FG" \
-    "--color=hl:$THEME_POINTER,hl+:$THEME_MARKER" \
+    "--color=hl:$THEME_HL,hl+:$THEME_FG" \
     "--color=prompt:$THEME_POINTER" \
     "--color=pointer:$THEME_POINTER" \
     "--color=marker:$THEME_POINTER" \
