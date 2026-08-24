@@ -1,11 +1,16 @@
-# theme (KDE Breeze Dark -- Konsole's built-in "Breeze" scheme)
-THEME_NAME="breeze_dark"
-THEME_BG="#232627"        THEME_BG_SEL="#31363b"
-THEME_FG="#fcfcfc"        THEME_HL="#1abc9c"
-THEME_PROMPT="#3daee9"    THEME_POINTER="#9b59b6"
-THEME_MARKER="#11d116"    THEME_BORDER="#1d99f3"
-THEME_HEADER="#fdbc4b"    THEME_INFO="#16a085"
-THEME_SPINNER="#ed1515"   THEME_AUTOSUGGEST="fg=#63686d,italic"
+# steal theme from kitty :)
+THEME_BG="$(kitty @ get-colors | awk '$1=="background"{print $2}')"
+THEME_FG="$(kitty @ get-colors | awk '$1=="foreground"{print $2}')"
+THEME_BG_SEL="$(kitty @ get-colors | awk '$1=="selection_background"{print $2}')"
+THEME_HL="$(kitty @ get-colors | awk '$1=="color6"{print $2}')"
+THEME_PROMPT="$(kitty @ get-colors | awk '$1=="color4"{print $2}')"
+THEME_POINTER="$(kitty @ get-colors | awk '$1=="color5"{print $2}')"
+THEME_MARKER="$(kitty @ get-colors | awk '$1=="color2"{print $2}')"
+THEME_BORDER="$(kitty @ get-colors | awk '$1=="color4"{print $2}')"
+THEME_HEADER="$(kitty @ get-colors | awk '$1=="color3"{print $2}')"
+THEME_INFO="$(kitty @ get-colors | awk '$1=="color6"{print $2}')"
+THEME_SPINNER="$(kitty @ get-colors | awk '$1=="color1"{print $2}')"
+THEME_AUTOSUGGEST="fg=$(kitty @ get-colors | awk '$1=="color8"{print $2}'),italic"
 
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
 if [[ ! -d "$ZINIT_HOME" ]]; then
