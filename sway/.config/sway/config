@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:JetBrainsMono NF Medium 10
+font pango:JetBrainsMono NF Medium 9
 
 set $left h
 set $down j
@@ -30,7 +30,7 @@ exec swayidle -w \
     before-sleep 'swaylock -f'
 
 # wallpaper
-output * bg /home/chrnio/Pictures/walls/waterfall-02.png fill
+output * bg /home/chrnio/Pictures/walls/pixel-sky.png fill
 
 input type:touchpad {
     tap enabled
