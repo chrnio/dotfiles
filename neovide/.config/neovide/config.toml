@@ -1,5 +1,34 @@
-vsync = true 
+vsync = true
 
 [font]
 normal = "JetBrainsMono NF Medium"
 size = 10
+
+[window]
+opacity = 0.85
+blur = false
+
+neovide-opacity = 0.85
+neovide-normal-opacity = 0.85
+
+neovide-padding-top = 8
+neovide-padding-bottom = 8
+neovide-padding-left = 8
+neovide-padding-right = 8
+
+neovide-scale-factor = 1.0
+
+neovide-theme = "auto"
+
+neovide-hide-mouse-when-typing = true
+
+neovide-scroll-animation-length = 0.2
+neovide-scroll-animation-far-lines = 1
+
+neovide-cursor-animation-length = 0.15
+neovide-cursor-short-animation-length = 0.04
+neovide-cursor-trail-size = 0.8
+neovide-cursor-animate-in-insert-mode = true
+neovide-cursor-animate-command-line = true
+neovide-cursor-antialiasing = true
+

@@ -3,7 +3,7 @@ return {
     "folke/tokyonight.nvim",
     opts = {
       style = "night",
-      transparent = false,
+      transparent = true,
 
       styles = {
         comments = { italic = true },
@@ -49,7 +49,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-night",
+      colorscheme = "catppuccin-mocha",
     },
   },
 }
