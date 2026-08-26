@@ -1,9 +1,12 @@
 font=monospace 10
-background-color=#1a1b26
-text-color=#a9b1d6
+
+background-color=#000000
+text-color=#d0d0d0
+
 default-timeout=5000
-border-color=#7aa2f7
-border-size=1
+
+border-color=#33ccff
+border-size=2
 border-radius=0
 
 padding=8
@@ -11,25 +14,23 @@ margin=8
 width=320
 height=100
 
-default-timeout=5000
-
 anchor=top-right
 layer=overlay
 
 icons=1
 max-icon-size=32
 
-progress-color=over #24283b
+progress-color=over #1a1a1a
 
 [urgency=low]
-border-color=#565f89
-text-color=#787c99
+border-color=#595959
+text-color=#888888
 
 [urgency=normal]
-border-color=#7aa2f7
+border-color=#33ccff
+text-color=#d0d0d0
 
 [urgency=high]
-border-color=#f7768e
-text-color=#c0caf5
+border-color=#00ff99
+text-color=#ffffff
 default-timeout=0
-
