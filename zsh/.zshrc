@@ -78,4 +78,4 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
 # prompt
-PROMPT='%F{green}%n@%m%f %~$ '
+PROMPT='%F{cyan}%n@%m%f %~$ '
