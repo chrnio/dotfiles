@@ -24,8 +24,23 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/compcache"
 
-# fzf-tab
-zstyle ':fzf-tab:*' fzf-flags '--height=50%' '--layout=reverse' '--border=sharp'
+# fzf-tab — Tokyo Night
+zstyle ':fzf-tab:*' fzf-flags \
+    '--height=50%' \
+    '--layout=reverse' \
+    '--border=sharp' \
+    '--border=rounded' \
+    '--color=bg:#1a1b26,bg+:#292e42,fg:#c0caf5,fg+:#c0caf5'
+    
+zstyle ':fzf-tab:*' fzf-bindings 'ctrl-j:down,ctrl-k:up'
+
+# Tokyo Night purple / blue accents
+zstyle ':fzf-tab:*' fzf-flags \
+    '--height=50%' \
+    '--layout=reverse' \
+    '--border=sharp' \
+    '--color=bg:#1a1b26,bg+:#292e42,fg:#a9b1d6,fg+:#c0caf5,hl:#bb9af7,hl+:#bb9af7,border:#bb9af7,pointer:#bb9af7,marker:#bb9af7,prompt:#bb9af7,info:#7aa2f7,spinner:#7aa2f7,header:#7aa2f7'
+
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # shell options
@@ -78,4 +93,4 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
 # prompt
-PROMPT='%F{cyan}%n@%m%f %~$ '
+PROMPT='%F{green}%n@%m%f %~$ '
