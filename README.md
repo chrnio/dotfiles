@@ -12,5 +12,5 @@ terminal  kitty
 
 
 <p align="center">
-  <img src="assets/new-setup.png" alt="Hyprland desktop setup" width="900">
+  <img src="assets/hyprland-setup.png" alt="Hyprland desktop setup" width="900">
 </p>
