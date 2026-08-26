@@ -8,9 +8,8 @@
 }
 
 window#waybar {
-    /* background-color: #16161e; */
-    background-color: rgba(22, 22, 30, 0.95);
-    color: #c0caf5;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #d0d0d0;
 }
 
 #workspaces {
@@ -20,15 +19,15 @@ window#waybar {
 #workspaces button {
     padding: 0 6px;
     background: transparent;
-    color: #565f89;
+    color: #555555;
 }
 
 #workspaces button.active {
-    color: #7aa2f7;
+    color: #00e5ff;
 }
 
 #workspaces button.urgent {
-    color: #f7768e;
+    color: #ff5555;
 }
 
 #clock,
@@ -39,17 +38,17 @@ window#waybar {
 #battery {
     padding: 0 10px;
     background: transparent;
-    color: #c0caf5;
+    color: #d0d0d0;
 }
 
 #pulseaudio.muted {
-    color: #565f89;
+    color: #555555;
 }
 
 #battery.warning {
-    color: #e0af68;
+    color: #ffcc00;
 }
 
 #battery.critical {
-    color: #f7768e;
+    color: #ff5555;
 }
