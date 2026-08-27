@@ -93,7 +93,7 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
 # prompt
-PROMPT='%F{green}%n@%m%f:%F{green}%~%f$ '
+PROMPT='%B%F{green}%n@%m%f%b:%B%F{green}%~%f%b$ '
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
