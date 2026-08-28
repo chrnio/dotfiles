@@ -23,7 +23,7 @@ window {
     anchor: center;
 
     background-color: @bg;
-    border: 2px;
+    border: 1px;
     border-color: @border;
     border-radius: 0px;
 
