@@ -204,4 +204,4 @@ bindsym Shift+Print exec grim ~/Pictures/screenshots/$(date +'%Y-%m-%d_%H-%M-%S'
 bindsym $mod+Shift+c exec grim -g "$(slurp)" - | wl-copy
 bindsym $mod+Shift+w exec swaymsg -t get_tree | jq -r '.. | select(.focused? == true).rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -g - - | tee ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy
 
-#include /etc/sway/config.d/*
+include /etc/sway/config.d/*
