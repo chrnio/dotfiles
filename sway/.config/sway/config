@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:JetBrainsMono NF Medium 9
+font pango:JetBrainsMono NF Medium 10
 
 set $left h
 set $down j
@@ -61,8 +61,9 @@ input type:keyboard {
     bindsym $mod+Shift+d exec discord
     bindsym $mod+m exec spotify-launcher
     bindsym $mod+o exec obsidian
+    bindsym $mod+Slash exec proton-pass
 
-    bindsym Ctrl+Shift+w exec google-chrome-stable --app="https://web.whatsapp.com"
+    #bindsym $mod+Ctrl+w exec google-chrome-stable --app="https://web.whatsapp.com"
 
     floating_modifier $mod normal
     bindsym $mod+Shift+r reload
