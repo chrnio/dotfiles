@@ -18,6 +18,7 @@ set $menu rofi -show drun
 # set $menu $rofi_cmd -show combi -combi-modes drun
 
 exec mako
+exec waybar
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id gnome-keyring-daemon --start --components=secrets
 exec --no-startup-id nm-applet 
@@ -30,7 +31,7 @@ exec swayidle -w \
     before-sleep 'swaylock -f'
 
 # wallpaper
-output * bg /home/chrnio/Pictures/walls/pixel-sky.png fill
+output * bg /home/chrnio/Pictures/Wallpapers/moon.png fill
 
 input type:touchpad {
     tap enabled
@@ -59,11 +60,11 @@ input type:keyboard {
     bindsym $mod+m exec spotify-launcher
     bindsym $mod+o exec obsidian
 
-    bindsym $mod+Shift+w exec google-chrome-stable --app="https://web.whatsapp.com"
+    bindsym Ctrl+Shift+w exec google-chrome-stable --app="https://web.whatsapp.com"
 
     floating_modifier $mod normal
     bindsym $mod+Shift+r reload
-    bindsym $mod+Escape exec swaylock -f -i /home/chrnio/Pictures/walls/legit-moon.png
+    bindsym $mod+Escape exec swaylock -f -i /home/chrnio/Pictures/Wallpapers/moon.png
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Moving around:
@@ -175,29 +176,30 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
-# swaybar
-bar {
-    position bottom
-    status_command i3status
-
-    colors {
-        statusline #ffffff
-        background #000000
-
-        focused_workspace   #4c7899 #285577 #ffffff
-        active_workspace    #333333 #5f676a #ffffff
-        inactive_workspace  #323232 #323232 #888888
-        urgent_workspace    #900000 #900000 #ffffff
-    }
-}
+### swaybar
+# bar {
+#     position bottom
+#     status_command i3status
+#
+#     colors {
+#         statusline #ffffff
+#         background #000000
+#
+#         focused_workspace   #4c7899 #285577 #ffffff
+#         active_workspace    #333333 #5f676a #ffffff
+#         inactive_workspace  #323232 #323232 #888888
+#         urgent_workspace    #900000 #900000 #ffffff
+#     }
+# }
 
 # borders
-default_border pixel 3
+default_border pixel 2
 default_floating_border pixel 2
 
 # screenshot
 bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Pictures/screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
 bindsym Shift+Print exec grim ~/Pictures/screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png
 bindsym $mod+Shift+c exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Shift+w exec swaymsg -t get_tree | jq -r '.. | select(.focused? == true).rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -g - - | tee ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy
 
-include /etc/sway/config.d/*
+#include /etc/sway/config.d/*
