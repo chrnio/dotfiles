@@ -55,6 +55,7 @@ input type:keyboard {
     bindsym $mod+Shift+f exec $terminalFileManager
     bindsym $mod+n exec $graphicalFileManager
     bindsym $mod+Shift+x exec $bluetoothManager
+    bindsym $mod+period exec gnome-characters
     bindsym $mod+z exec zeditor
     bindsym $mod+Shift+d exec discord
     bindsym $mod+m exec spotify-launcher
