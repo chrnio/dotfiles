@@ -47,6 +47,7 @@ input type:keyboard {
 }
 
     bindsym $mod+Return exec $term
+    bindsym $mod+Ctrl+w exec pkill -USR1 waybar # toggle waybar
     bindsym $mod+Shift+Return exec neovide
     bindsym $mod+Shift+q kill
     bindsym $mod+d exec $menu
