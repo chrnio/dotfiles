@@ -1,7 +1,9 @@
-include ~/.config/kitty/themes/tokyo.conf
+# vim:ft=kitty
+
+include ~/.config/kitty/themes/gruvbox-material-dark-hard.conf
 
 # Font
-font_family               JetBrainsMono NF Medium 
+font_family               JetBrainsMono NF Medium
 bold_family               JetBrainsMono NF Medium Bold
 italic_family             JetBrainsMono NF Medium Medium
 bold_italic_family        JetBrainsMono NF Medium BoldItalic
@@ -59,16 +61,23 @@ visual_bell_duration      0.1
 window_alert_on_bell      yes
 
 # Tabs
-# Kitty tabs disabled/hidden unless 2+ tabs exist.
 tab_bar_min_tabs          2
 
 tab_bar_edge              top
 tab_bar_style             powerline
 tab_powerline_style       slanted
-tab_bar_min_tabs          1
 tab_bar_margin_width      0
 tab_bar_margin_height     0 0
-tab_bar_background        none
+tab_bar_background        #1d2021
+
+# Gruvbox Material Dark Hard
+# Muted blue/teal active tab
+active_tab_foreground     #1d2021
+active_tab_background     #7daea3
+
+# Subtle inactive tabs
+inactive_tab_foreground   #928374
+inactive_tab_background   #282828
 
 active_tab_font_style     bold
 inactive_tab_font_style   normal
@@ -99,7 +108,7 @@ clear_all_shortcuts       yes
 map ctrl+shift+c          copy_to_clipboard
 map ctrl+shift+v          paste_from_clipboard
 
-Kitty tab management
+# Kitty tab management
 map ctrl+shift+t          new_tab
 map ctrl+shift+w          close_tab
 map ctrl+shift+bracketleft  previous_tab
@@ -117,7 +126,7 @@ map alt+9 goto_tab 9
 
 map ctrl+tab next_tab
 
-Kitty window/pane management
+# Kitty window/pane management
 map ctrl+shift+left       neighboring_window left
 map ctrl+shift+right      neighboring_window right
 map ctrl+shift+up         neighboring_window up
@@ -153,4 +162,5 @@ map ctrl+shift+p>h        kitten hints --type hash --program @
 map ctrl+shift+f5         load_config_file
 map ctrl+shift+f6         debug_config
 
-#shell zsh -c 'exec zellij'
+# Shell
+# shell zsh -c 'exec zellij'
