@@ -6,7 +6,7 @@ return {
       transparent = false,
 
       styles = {
-        comments = { italic = true },
+        comments = { italic = false },
         keywords = { italic = false },
         functions = {},
         variables = {},
@@ -40,8 +40,13 @@ return {
     lazy = false,
     priority = 1000,
     init = function()
-      vim.g.gruvbox_material_background = "medium"
+      -- Gruvbox Material Dark Hard
+      vim.g.gruvbox_material_background = "hard"
+
+      -- Let Kitty handle terminal opacity
       vim.g.gruvbox_material_transparent_background = 2
+
+      -- No italics anywhere
       vim.g.gruvbox_material_enable_italic = false
     end,
   },
