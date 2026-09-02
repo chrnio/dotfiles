@@ -15,37 +15,26 @@ max_height = 2000
 
 [opener]
 
-edit = [
-    { run = 'neovide "$@"', block = true }
-]
-
-pdf = [
-    { run = 'papers "$@"', orphan = true }
-]
-
-image = [
-    { run = 'loupe "$@"', orphan = true }
-]
-
-video = [
-    { run = 'mpv "$@"', orphan = true }
-]
-
-archive = [
-    { run = 'file-roller "$@"', orphan = true }
+open = [
+    { run = 'xdg-open "$1"', orphan = true }
 ]
 
 [open]
 
 rules = [
-    { mime = "text/*", use = "edit" },
+    { mime = "text/*", use = "open" },
+    { mime = "application/pdf", use = "open" },
+    { mime = "image/*", use = "open" },
+    { mime = "video/*", use = "open" },
+    { mime = "audio/*", use = "open" },
 
-    { mime = "application/pdf", use = "pdf" },
+    { mime = "application/zip", use = "open" },
+    { mime = "application/x-tar", use = "open" },
+    { mime = "application/gzip", use = "open" },
+    { mime = "application/x-bzip2", use = "open" },
+    { mime = "application/x-xz", use = "open" },
+    { mime = "application/x-7z-compressed", use = "open" },
+    { mime = "application/x-rar", use = "open" },
 
-    { mime = "image/*", use = "image" },
-
-    { mime = "video/*", use = "video" },
-
-    { mime = "application/zip", use = "archive" },
-    { mime = "application/x-tar", use = "archive" },
+    { mime = "inode/directory", use = "open" },
 ]
