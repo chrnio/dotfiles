@@ -2,6 +2,6 @@
 require("config.lazy")
 
 if vim.g.neovide then
-  vim.g.neovide_opacity = 0.9
-  vim.g.neovide_normal_opacity = 0.9
+  vim.g.neovide_opacity = 1.0
+  vim.g.neovide_normal_opacity = 1.0
 end
