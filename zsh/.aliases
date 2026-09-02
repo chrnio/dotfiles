@@ -31,6 +31,8 @@ alias gl='git pull'
 alias gd='git diff'
 alias glog='git log --oneline --graph --decorate --all'
 
+alias lg='lazygit'
+
 # config
 alias zrc='nvim ~/.zshrc'
 alias zal='nvim ~/.aliases'
