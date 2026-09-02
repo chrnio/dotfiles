@@ -16,7 +16,7 @@ max_height = 2000
 [opener]
 
 open = [
-    { run = 'xdg-open "$1"', orphan = true }
+    { run = 'xdg-open %s1', orphan = true }
 ]
 
 [open]
