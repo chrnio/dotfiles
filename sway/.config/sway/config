@@ -31,11 +31,13 @@ exec --no-startup-id nm-applet
 #     before-sleep 'swaylock -f'
 #
 
+
 # 15 mins before idle timeout
 exec swayidle -w \
     timeout 900 'swaylock -f -i /home/chrnio/Pictures/Wallpapers/moon.png' \
     before-sleep 'swaylock -f -i /home/chrnio/Pictures/Wallpapers/moon.png'
 
+bindsym $mod+Escape exec swaylock -f -i /home/chrnio/Pictures/Wallpapers/moon.png
 
 # wallpaper
 output * bg /home/chrnio/Pictures/Wallpapers/pixel-sky.png fill
@@ -79,7 +81,6 @@ input "1133:16529:Logitech_Wireless_Mouse" {
 
     floating_modifier $mod normal
     bindsym $mod+Shift+r reload
-    bindsym $mod+Escape exec swaylock -f -i /home/chrnio/Pictures/Wallpapers/moon.png
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # Moving around:
