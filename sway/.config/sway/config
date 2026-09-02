@@ -38,7 +38,7 @@ exec swayidle -w \
 
 
 # wallpaper
-output * bg /home/chrnio/Pictures/Wallpapers/moon.png fill
+output * bg /home/chrnio/Pictures/Wallpapers/pixel-sky.png fill
 
 input type:touchpad {
     tap enabled
