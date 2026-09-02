@@ -9,6 +9,7 @@ set $right l
 
 set $term kitty
 set $browser librewolf
+set $altBrowser google-chrome-stable
 set $terminalFileManager "kitty -e yazi"
 set $graphicalFileManager nautilus
 set $bluetoothManager "kitty -e bluetui"
@@ -66,11 +67,13 @@ input "1133:16529:Logitech_Wireless_Mouse" {
     bindsym $mod+Shift+q kill
     bindsym $mod+d exec $menu
     bindsym $mod+Shift+b exec $browser
+    bindsym $mod+Alt+b exec $altBrowser
     bindsym $mod+Shift+v exec pavucontrol
     bindsym $mod+Shift+f exec $terminalFileManager
     bindsym $mod+n exec $graphicalFileManager
     bindsym $mod+Shift+x exec $bluetoothManager
     bindsym $mod+period exec gnome-characters
+    bindsym $mod+comma exec neovide ~/.config/sway/config
     bindsym $mod+z exec zeditor
     bindsym $mod+Shift+d exec discord
     bindsym $mod+m exec spotify-launcher
