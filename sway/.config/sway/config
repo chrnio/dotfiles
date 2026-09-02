@@ -41,7 +41,7 @@ exec swayidle -w \
 bindsym $mod+Escape exec swaylock -f -i /home/chrnio/Pictures/Wallpapers/moon.png
 
 # wallpaper
-output * bg /home/chrnio/Pictures/Wallpapers/pixel-sky.png fill
+output * bg /home/chrnio/Pictures/Wallpapers/low-light-city.png fill
 
 input type:touchpad {
     tap enabled
