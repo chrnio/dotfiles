@@ -1,4 +1,3 @@
-# zinit
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
 if [[ ! -d "$ZINIT_HOME" ]]; then
     mkdir -p "$(dirname "$ZINIT_HOME")"
@@ -15,49 +14,9 @@ zinit light Aloxaf/fzf-tab
 zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 
-# completion
-zstyle ':completion:*' menu no
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/compcache"
-
-# fzf-tab — Tokyo Night
-zstyle ':fzf-tab:*' fzf-flags \
-    '--height=50%' \
-    '--layout=reverse' \
-    '--border=sharp' \
-    '--border=rounded' \
-    '--color=bg:#1a1b26,bg+:#292e42,fg:#c0caf5,fg+:#c0caf5'
-    
-zstyle ':fzf-tab:*' fzf-bindings 'ctrl-j:down,ctrl-k:up'
-
-# Tokyo Night purple / blue accents
-zstyle ':fzf-tab:*' fzf-flags \
-    '--height=50%' \
-    '--layout=reverse' \
-    '--border=sharp' \
-    '--color=bg:#1a1b26,bg+:#292e42,fg:#a9b1d6,fg+:#c0caf5,hl:#bb9af7,hl+:#bb9af7,border:#bb9af7,pointer:#bb9af7,marker:#bb9af7,prompt:#bb9af7,info:#7aa2f7,spinner:#7aa2f7,header:#7aa2f7'
-
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-
-# shell options
-setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
-setopt EXTENDED_GLOB GLOB_DOTS NULL_GLOB
-setopt INTERACTIVE_COMMENTS NO_BEEP
-
-# history
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=100000
-SAVEHIST=100000
-setopt HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS HIST_IGNORE_SPACE HIST_VERIFY
-setopt SHARE_HISTORY INC_APPEND_HISTORY
-
-# environment
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -67,34 +26,93 @@ typeset -U path
 path=("$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/go/bin" $path)
 export PATH
 
-# key bindings
+autoload -Uz colors && colors
+
+zstyle ':completion:*' menu no
+zstyle ':completion:*' matcher-list \
+    'm:{a-zA-Z}={A-Za-z}' \
+    'r:|[._-]=* r:|=*' \
+    'l:|=* r:|=*'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*:descriptions' format '%F{blue}[%d]%f'
+zstyle ':completion:*:messages' format '%F{blue}%d%f'
+zstyle ':completion:*:warnings' format '%F{red}%d%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh/compcache"
+
+zstyle ':fzf-tab:*' fzf-flags \
+    '--height=50%' \
+    '--layout=reverse' \
+    '--border=rounded' \
+    '--color=bg:-1,bg+:-1,fg:-1,fg+:-1' \
+    '--color=hl:magenta,hl+:magenta' \
+    '--color=border:magenta,pointer:magenta,marker:magenta' \
+    '--color=prompt:magenta,info:blue,spinner:blue,header:blue'
+
+zstyle ':fzf-tab:*' fzf-bindings \
+    'ctrl-j:down,ctrl-k:up'
+
+zstyle ':fzf-tab:complete:cd:*' \
+    fzf-preview 'eza -1 --color=always $realpath'
+
 bindkey -e
+
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey '^[[A'    up-line-or-beginning-search
-bindkey '^[[B'    down-line-or-beginning-search
+
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
-bindkey '^H'      backward-kill-word
+bindkey '^H' backward-kill-word
 bindkey '^[[3;5~' kill-word
-bindkey '^ '      autosuggest-accept
+bindkey '^ ' autosuggest-accept
 
-# fzf
-source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
-export FZF_DEFAULT_OPTS='--height=50% --layout=reverse --border=rounded'
+export FZF_DEFAULT_OPTS='
+--height=50%
+--layout=reverse
+--border=rounded
+--color=bg:-1,bg+:-1
+--color=fg:-1,fg+:-1
+--color=hl:magenta,hl+:magenta
+--color=pointer:magenta,marker:magenta
+--color=prompt:magenta
+--color=info:blue,spinner:blue,header:blue
+'
+
+source <(fzf --zsh)
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
-# aliases
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
+setopt EXTENDED_GLOB
+setopt GLOB_DOTS
+setopt NULL_GLOB
+setopt INTERACTIVE_COMMENTS
+setopt NO_BEEP
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_VERIFY
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
+
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
-# prompt
 PROMPT='%B%F{green}%n@%m%f%b:%B%F{green}%~%f%b$ '
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
