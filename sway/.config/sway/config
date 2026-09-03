@@ -80,7 +80,7 @@ input "1133:16529:Logitech_Wireless_Mouse" {
     bindsym $mod+o exec obsidian
     bindsym $mod+Slash exec proton-pass
 
-    #bindsym $mod+Ctrl+w exec google-chrome-stable --app="https://web.whatsapp.com"
+    bindsym $mod+Alt+w exec google-chrome-stable --app="https://web.whatsapp.com"
 
     floating_modifier $mod normal
     bindsym $mod+Shift+r reload
