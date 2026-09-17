@@ -1,15 +1,15 @@
-font-family = "Hasklug Nerd Font Propo"
-font-style = "Medium"
-font-size = 11
+font-family = "JetBrainsMono Nerd Font Propo"
+font-style = "SemiBold"
+font-size = 10
 
-theme = "Gruvbox Material Dark"
+theme = "Atom One Dark"
 
 # fullscreen = true
-window-height=510
-window-width=1640
+#window-height=510
+#window-width=1640
 window-decoration = none
-window-padding-x = 8
-window-padding-y = 8
+window-padding-x = 3
+window-padding-y = 3
 window-padding-balance = true
 window-vsync = true
 window-inherit-working-directory = true
