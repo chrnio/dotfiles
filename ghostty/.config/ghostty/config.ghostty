@@ -1,29 +1,40 @@
+### Colorscheme
+
+theme = "Gruvbox Material Dark"
+
+### Font Settings
+
 font-family = "JetBrainsMono Nerd Font Propo"
 font-style = "SemiBold"
 font-size = 10
 
-theme = "Atom One Dark"
+### Window Settings
 
-# fullscreen = true
-#window-height=510
-#window-width=1640
+window-height=510
+window-width=1640
 window-decoration = none
+
 window-padding-x = 3
 window-padding-y = 3
 window-padding-balance = true
+
 window-vsync = true
 window-inherit-working-directory = true
 window-show-tab-bar = auto
 confirm-close-surface = false
 
+### Cursor Settings
 
-cursor-style = block
+cursor-style = bar
 cursor-style-blink = false
 cursor-opacity = 0.9
 
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 2
 mouse-reporting = true
+
+### Clipboard Settings
+
 copy-on-select = true
 clipboard-paste-protection = true
 clipboard-trim-trailing-spaces = true
@@ -32,11 +43,17 @@ link-url = true
 scrollback-limit = 104857600
 scrollbar = never
 
+### Shell-related Settings
+
 shell-integration = detect
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
 
+### Transparency Settings
+
 unfocused-split-opacity = 0.75
 split-preserve-zoom = navigation
+
+### Keybinds
 
 keybind = ctrl+shift+r=reload_config
 keybind = ctrl+shift+i=inspector:toggle
