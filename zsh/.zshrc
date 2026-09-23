@@ -116,3 +116,4 @@ PROMPT='%B%F{green}%n@%m%f%b:%B%F{green}%~%f%b$ '
 
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export MANPAGER='nvim +Man!'
