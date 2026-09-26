@@ -112,8 +112,12 @@ setopt INC_APPEND_HISTORY
 
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
-PROMPT='%B%F{green}%n@%m%f%b:%B%F{green}%~%f%b$ '
+#PROMPT='%B%F{green}%n@%m%f%b:%B%F{green}%~%f%b$ '
 
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 export MANPAGER='nvim +Man!'
+
+. "$HOME/.local/share/../bin/env"
+
+eval "$(starship init zsh)"
