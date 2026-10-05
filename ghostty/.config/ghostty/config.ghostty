@@ -2,9 +2,9 @@
 theme = "Gruvbox Material Dark"
 
 ### Font Settings
-font-family = "IntoneMono NFM"
-font-style = "Medium"
-font-size = 11
+font-family = "CaskaydiaCove NF"
+font-style = "SemiBold"
+font-size = 10
 
 ### Window Settings
 window-height=510
