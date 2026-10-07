@@ -1,5 +1,5 @@
 ### Colorscheme
-theme = "Gruvbox Material Dark"
+theme = "Atom One Dark"
 
 ### Font Settings
 font-family = "CaskaydiaCove NF"
@@ -7,9 +7,9 @@ font-style = "SemiBold"
 font-size = 10
 
 ### Window Settings
-window-height=510
-window-width=1640
-window-decoration = none
+# window-height=510
+# window-width=1640
+# window-decoration = none
 
 window-padding-x = 3
 window-padding-y = 3
