@@ -1,8 +1,8 @@
 ### Colorscheme
-theme = "Atom One Dark"
+theme = "Gruvbox Material Dark"
 
 ### Font Settings
-font-family = "CaskaydiaCove NF"
+font-family = "SauceCodePro NF"
 font-style = "SemiBold"
 font-size = 10
 
