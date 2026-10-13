@@ -144,7 +144,7 @@ keybinds clear-defaults=true {
         bind "Alt i" { MoveTab "left"; }
         bind "Alt n" { NewPane; }
         bind "Alt o" { MoveTab "right"; }
-        bind "Ctrl q" { Quit; }
+        //bind "Ctrl q" { Quit; }
     }
     shared_except "locked" "move" {
         bind "Ctrl h" { SwitchToMode "move"; }
@@ -267,7 +267,7 @@ plugins {
 load_plugins {
 }
  
-theme "gruvbox-material-dark-medium"
+theme "onedark"
 default_mode "normal"
 default_shell "zsh"
 default_layout "compact" // default | compact
