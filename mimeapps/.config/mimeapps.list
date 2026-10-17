@@ -1,13 +1,13 @@
 [Default Applications]
 
 # Web
-text/html=librewolf.desktop
+text/html=brave-origin.desktop
 application/xhtml+xml=librewolf.desktop
-application/xml=librewolf.desktop
-x-scheme-handler/http=librewolf.desktop
-x-scheme-handler/https=librewolf.desktop
-x-scheme-handler/about=librewolf.desktop
-x-scheme-handler/ftp=librewolf.desktop
+application/xml=brave-origin.desktop
+x-scheme-handler/http=brave-origin.desktop
+x-scheme-handler/https=brave-origin.desktop
+x-scheme-handler/about=brave-origin.desktop
+x-scheme-handler/ftp=brave-origin.desktop
 
 # PDF
 application/pdf=org.gnome.Papers.desktop
@@ -74,3 +74,4 @@ application/x-yaml=neovide.desktop
 application/toml=neovide.desktop
 application/x-httpd-php=neovide.desktop
 application/sql=neovide.desktop
+x-scheme-handler/unknown=brave-origin.desktop

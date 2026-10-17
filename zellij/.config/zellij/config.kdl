@@ -267,7 +267,7 @@ plugins {
 load_plugins {
 }
  
-theme "gruvbox-material-dark-medium"
+theme "onedark"
 default_mode "normal"
 default_shell "zsh"
 default_layout "compact" // default | compact
