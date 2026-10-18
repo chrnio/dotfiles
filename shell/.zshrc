@@ -6,16 +6,13 @@ if [[ ! -d "$ZINIT_HOME" ]]; then
 fi
 source "$ZINIT_HOME/zinit.zsh"
 
-### zsh-vi-mode (loaded first, NOT in turbo mode)
-# "sourcing" makes it set up its keymaps immediately, so every bindkey below
-# (fzf, atuin, autosuggestions, substring search) is applied after it and survives.
+### zsh-vi-mode plugin loaded first
 ZVM_INIT_MODE=sourcing
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
-### Plugins (turbo mode)
-# Order matters: completions -> compinit + fzf-tab -> autosuggestions -> syntax highlighting.
+### Plugins (turbo mode), order matters here btw
 zinit ice wait lucid blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
 
@@ -46,7 +43,7 @@ zinit light zsh-users/zsh-history-substring-search
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export MANPAGER='nvim +Man!'
-export BAT_THEME="TwoDark"   # bat's built-in Atom One Dark theme
+export BAT_THEME="TwoDark"   # Atom One Dark
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -57,8 +54,6 @@ typeset -U path
 path=("$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/go/bin" "$HOME/.opencode/bin" $path)
 export PATH
 
-# Non-login GNOME terminals don't run /etc/profile.d/colorls.sh, so LS_COLORS
-# can be empty, which leaves completion lists uncoloured.
 if [[ -z "$LS_COLORS" ]] && (( $+commands[dircolors] )); then
     eval "$(dircolors -b)"
 fi
@@ -84,11 +79,10 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 ### fzf-tab
-# Reuse FZF_DEFAULT_OPTS (One Dark theme, see FZF section) so both look identical.
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' fzf-pad 4
 zstyle ':fzf-tab:*' prefix ''
-# Group header colours: blue, purple, cyan, yellow, red, green (One Dark).
+
 zstyle ':fzf-tab:*' group-colors \
     $'\033[38;2;97;175;239m' \
     $'\033[38;2;198;120;221m' \
@@ -111,9 +105,8 @@ zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview 'git diff --colo
 zstyle ':fzf-tab:complete:git-log:*' fzf-preview 'git log --oneline --color=always $word'
 
 ### Keybindings
-# No `bindkey -e`: zsh-vi-mode makes viins the main keymap, so plain
-# bindkey calls below apply to insert mode.
 
+# bindkey calls below apply to insert mode.
 autoload -Uz edit-command-line
 zle -N edit-command-line
 
@@ -158,13 +151,7 @@ export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --color=always {}'"
 
 (( $+commands[fzf] )) && source <(fzf --zsh)
 
-# File picker on Alt+T: zellij owns Ctrl+T (tab mode) and sits between
-# kitty and zsh, so Ctrl+Shift+T can't be passed through reliably.
-bindkey -r '^T'
-bindkey '^[t' fzf-file-widget
-
-### atuin: takes over Ctrl+R (loaded after fzf so it wins that key).
-# Up arrow is left to history-substring-search.
+### atuin: Ctrl+R, loaded after fzf, replaces its functionality here...Up arrow for nav
 (( $+commands[atuin] )) && eval "$(atuin init zsh --disable-up-arrow)"
 
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
@@ -184,7 +171,7 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 setopt EXTENDED_HISTORY
-setopt SHARE_HISTORY          # implies incremental append; don't also set INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_FIND_NO_DUPS
@@ -213,9 +200,8 @@ setopt ALWAYS_TO_END
 # PROMPT='%B%F{green}%n@%m%f%b:%B%F{green}%~%f%b$ '
 (( $+commands[starship] )) && eval "$(starship init zsh)"
 
-### direnv: auto-load/unload .envrc per directory
+### direnv
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 
-### zoxide (keep last): replaces cd. `cd foo` uses a real path if one exists,
-### otherwise jumps to the best match from history. `cdi` picks with fzf.
+### zoxide
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh --cmd cd)"
