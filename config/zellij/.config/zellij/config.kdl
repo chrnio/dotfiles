@@ -271,7 +271,6 @@ theme "onedark"
 default_mode "normal"
 default_shell "zsh"
 default_layout "compact" // default | compact
-theme_dir "/home/charan/.config/zellij/themes/"
 pane_frames true
 pane_frame_style "full"
 mirror_session true
