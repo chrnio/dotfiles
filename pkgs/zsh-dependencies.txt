@@ -5,18 +5,16 @@ zsh
 util-linux-user
 git
 
-# fuzzy finding and previews (fzf-tab, Alt+T, Alt+C, cdi)
 fzf
 fd-find
 bat
 eza
 
-# navigation, history, environments
+# for navigation, history and env
 zoxide
 atuin
 direnv
 
-# tools used by aliases
 ripgrep
 git-delta
 trash-cli
@@ -28,4 +26,3 @@ neovim
 ### Not in official fedora repositories
 # starship
 # lazygit
-# sdkman
