@@ -46,6 +46,7 @@ zinit light zsh-users/zsh-history-substring-search
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export MANPAGER='nvim +Man!'
+export BAT_THEME="TwoDark"   # bat's built-in Atom One Dark theme
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -211,10 +212,6 @@ setopt ALWAYS_TO_END
 ### Prompt
 # PROMPT='%B%F{green}%n@%m%f%b:%B%F{green}%~%f%b$ '
 (( $+commands[starship] )) && eval "$(starship init zsh)"
-
-### SDKMAN
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 ### direnv: auto-load/unload .envrc per directory
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
