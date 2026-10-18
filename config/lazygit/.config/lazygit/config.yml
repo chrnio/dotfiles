@@ -1,0 +1,38 @@
+# ~/.config/lazygit/config.yml
+
+gui:
+  nerdFontsVersion: "3"
+  showFileIcons: true
+  border: rounded
+  theme:
+    # One Dark palette
+    activeBorderColor:
+      - "#98c379"
+      - bold
+    inactiveBorderColor:
+      - "#4b5263"
+    searchingActiveBorderColor:
+      - "#e5c07b"
+      - bold
+    optionsTextColor:
+      - "#61afef"
+    selectedLineBgColor:
+      - "#2c313a"
+    inactiveViewSelectedLineBgColor:
+      - "#2c313a"
+    cherryPickedCommitFgColor:
+      - "#61afef"
+    cherryPickedCommitBgColor:
+      - "#3e4451"
+    markedBaseCommitFgColor:
+      - "#61afef"
+    markedBaseCommitBgColor:
+      - "#e5c07b"
+    unstagedChangesColor:
+      - "#e06c75"
+    defaultFgColor:
+      - "#abb2bf"
+git:
+  diffRenderers:
+    - command: delta --dark --paging=never
+      colorArg: always
