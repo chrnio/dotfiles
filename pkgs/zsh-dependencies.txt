@@ -1,0 +1,31 @@
+### Command: sudo dnf install $(grep -v '^#' zsh-dependencies.txt | grep -v '^$')
+
+# shell
+zsh
+util-linux-user
+git
+
+# fuzzy finding and previews (fzf-tab, Alt+T, Alt+C, cdi)
+fzf
+fd-find
+bat
+eza
+
+# navigation, history, environments
+zoxide
+atuin
+direnv
+
+# tools used by aliases
+ripgrep
+git-delta
+trash-cli
+btop
+fastfetch
+aria2
+neovim
+
+### Not in official fedora repositories
+# starship
+# lazygit
+# sdkman
