@@ -1,0 +1,1 @@
+com.mattjakeman.ExtensionManager me.proton.Pass com.spotify.Client io.missioncenter.MissionCenter io.podman_desktop.PodmanDesktop

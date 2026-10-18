@@ -1,0 +1,25 @@
+[init]
+    defaultBranch = main
+
+[core]
+    editor = nvim
+    autocrlf = input
+
+[push]
+    autoSetupRemote = true
+
+[fetch]
+    prune = true
+
+[diff]
+    algorithm = histogram
+    colorMoved = default
+
+[merge]
+    conflictstyle = zdiff3
+
+[alias]
+    s = status -sb
+    lg = log --oneline --graph --decorate -15
+    unstage = restore --staged
+    last = log -1 HEAD
