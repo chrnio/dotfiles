@@ -23,3 +23,6 @@
     lg = log --oneline --graph --decorate -15
     unstage = restore --staged
     last = log -1 HEAD
+[user]
+	name = Charan Vadapalli
+	email = 289275369+chrnio@users.noreply.github.com
