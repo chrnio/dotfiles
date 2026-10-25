@@ -7,10 +7,10 @@ fi
 source "$ZINIT_HOME/zinit.zsh"
 
 ### zsh-vi-mode plugin loaded first
-ZVM_INIT_MODE=sourcing
-ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
+# ZVM_INIT_MODE=sourcing
+# ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+# zinit ice depth=1
+# zinit light jeffreytse/zsh-vi-mode
 
 ### Plugins (turbo mode), order matters here btw
 zinit ice wait lucid blockf atpull'zinit creinstall -q .'
