@@ -197,8 +197,8 @@ setopt ALWAYS_TO_END
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
 ### Prompt
-# PROMPT='%B%F{green}%n@%m%f%b:%B%F{green}%~%f%b$ '
-(( $+commands[starship] )) && eval "$(starship init zsh)"
+PROMPT='%B%F{green}%n@%m%f%b:%B%F{green}%~%f%b$ '
+#(( $+commands[starship] )) && eval "$(starship init zsh)"
 
 ### direnv
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
